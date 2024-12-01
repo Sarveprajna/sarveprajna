@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+    :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+    <script>
+ const visualVideos = [
+    {
+        id: '1',
+        title: 'C# Programming Tutorial for Beginners',
+        description: 'Learn the basics of C# programming with this comprehensive guide for beginners.',
+        url: 'https://youtu.be/gfkTfcpWqAY', // Sample C# link
+        thumbnail: "c%23v.jpg",
+        difficulty: 'full course',
+        topic: 'C# Programming'
+    },
+    {
+        id: '2',
+        title: 'Learn C# Programming - Full Course for Beginners',
+        description: 'Master C# programming with this in-depth course for beginners.',
+        url: 'https://youtu.be/SuLiu5AK9Ps', // Sample C# link
+        thumbnail: "c%23v.jpg",
+        difficulty: 'full course',
+        topic: 'C# Programming'
+    },
+    {
+        id: '3',
+        title: 'C# Language Tutorial with Code Examples',
+        description: 'Explore essential C# programming concepts through examples.',
+        url: 'https://youtu.be/hH_yQq7R-aU', // Sample C# link
+        thumbnail: "c%23v.jpg",
+        difficulty: 'full course',
+        topic: 'C# Programming'
+    }
+];
+
+const auditoryVideos = [
+    {
+        id: '1',
+        title: 'Audio Lecture: Understanding C# Programming Basics',
+        description: 'An in-depth audio lecture focusing on the fundamentals of C# programming for auditory learners.',
+        url: 'https://youtu.be/SXmVym6L8dw', // Sample C# link
+        thumbnail: "c%23a.jpg",
+        difficulty: 'audio guide',
+        topic: 'C# Programming'
+    },
+    {
+        id: '2',
+        title: 'Podcast: Essential C# Programming Concepts',
+        description: 'A podcast covering key concepts in C# programming designed for listening comprehension.',
+        url: 'https://youtu.be/ZkQS0HreuSc', // Sample C# link
+        thumbnail: "c%23a.jpg",
+        difficulty: 'podcast',
+        topic: 'C# Programming'
+    },
+    {
+        id: '3',
+        title: 'Lecture Audio: Advanced C# Techniques Explained',
+        description: 'An advanced lecture on C# programming techniques, formatted as an auditory experience.',
+        url: 'https://youtu.be/GlGpSQsS8uc', // Sample C# link
+        thumbnail: "c%23a.jpg",
+        difficulty: 'lecture',
+        topic: 'C# Programming'
+    }
+];
+
+const ReadVideos = [
+    {
+        id: '1',
+        title: 'Step-by-Step Guide to C# Programming',
+        description: 'A comprehensive C# programming guide that includes code walkthroughs and written annotations.',
+        url: 'https://youtu.be/M5ugY7fWydE', // Sample C# link
+        thumbnail: "c%23r.jpg",
+        difficulty: 'text-based guide',
+        topic: 'C# Programming'
+    },
+    {
+        id: '2',
+        title: 'In-Depth C# Programming Concepts',
+        description: 'Focuses on written explanations and coding exercises for each C# programming concept.',
+        url: 'https://youtu.be/Z3EpnGi52tE', // Sample C# link
+        thumbnail: "c%23r.jpg",
+        difficulty: 'text & code examples',
+        topic: 'C# Programming'
+    },
+    {
+        id: '3',
+        title: 'Written Tutorial: Mastering C# Programming',
+        description: 'A tutorial with a focus on written explanations and code blocks for each topic.',
+        url: 'https://youtu.be/67oWw9TanOk', // Sample C# link
+        thumbnail: "c%23r.jpg",
+        difficulty: 'tutorial',
+        topic: 'C# Programming'
+    }
+];
+
+const logicalVideos = [
+    {
+        id: '1',
+        title: 'C# Programming: Structured Logic and Problem-Solving',
+        description: 'Deep dive into structured problem-solving techniques in C# programming.',
+        url: 'https://youtu.be/gfkTfcpWqAY', // Sample C# link
+        thumbnail: "c%23l.png",
+        difficulty: 'tutorial',
+        topic: 'C# Programming'
+    },
+    {
+        id: '2',
+        title: 'Algorithmic Approach to C# Programming',
+        description: 'Learn C# programming with an algorithmic approach focusing on logic.',
+        url: 'https://youtu.be/r3CExhZgZV8', // Sample C# link
+        thumbnail: "c%23l.png",
+        difficulty: 'lecture',
+        topic: 'C# Programming'
+    },
+    {
+        id: '3',
+        title: 'Problem-Solving Techniques for C# Developers',
+        description: 'Designed for logical learners, this video emphasizes efficient problem-solving methods in C#.',
+        url: 'https://youtu.be/qOruiBrXlAw', // Sample C# link
+        thumbnail: "c%23l.png",
+        difficulty: 'problem-solving',
+        topic: 'C# Programming'
+    }
+];
+
+const solitaryVideos = [
+    {
+        id: '1',
+        title: 'C# Programming for Beginners - Learn C# Programming (Full Course)',
+        description: 'A comprehensive tutorial on C# programming, covering the basics and structured logic for beginners.',
+        url: 'https://youtu.be/hMMTnoYFNqg', // Sample C# link
+        thumbnail: "c%23s.jpg",
+        difficulty: 'tutorial',
+        topic: 'C# Programming'
+    },
+    {
+        id: '2',
+        title: 'Data Structures and Algorithms in C#',
+        description: 'Learn C# data structures and algorithms, ideal for those who prefer a solitary learning approach.',
+        url: 'https://youtu.be/QAHfPdZnBGQ', // Sample C# link
+        thumbnail: "c%23s.jpg",
+        difficulty: 'lecture',
+        topic: 'C# Programming'
+    },
+    {
+        id: '3',
+        title: 'C# Language for Self-Taught Programmers',
+        description: 'Ideal for self-directed learners, this video covers essential C# concepts in a structured format.',
+        url: 'https://youtu.be/67oWw9TanOk', // Sample C# link
+        thumbnail: "c%23s.jpg",
+        difficulty: 'structured learning',
+        topic: 'C# Programming'
+    }
+];
+
+
+        const displayVideos = (videos, containerId) => {
+            const container = document.getElementById(containerId);
+            videos.forEach(video => {
+                const videoCard = document.createElement("div");
+                videoCard.classList.add("video-card");
+                videoCard.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail" />
+                    </a>
+                    <div class="video-content">
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-description">${video.description}</p>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty.replace(/ /g, '-').toLowerCase()}">${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(videoCard);
+            });
+        };
+
+        displayVideos(visualVideos, "visualVideosGrid");
+        displayVideos(auditoryVideos, "auditoryVideosGrid");
+        displayVideos(ReadVideos, "readVideosGrid");
+        displayVideos(logicalVideos, "logicalVideosGrid");
+        displayVideos(solitaryVideos, "solitaryVideosGrid");
+    </script>
+</body>
+</html>

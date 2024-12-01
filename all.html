@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.box {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 765px;
+    padding: 20px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 1.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 1.5rem;
+    display: block;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.image-item {
+    text-align: center;
+    width: calc(50% - 20px); /* Adjust width for smaller screens */
+    margin: 10px;
+}
+
+.image-container img {
+    width: 100%;
+    max-width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 18%;
+    border: 6px solid #070606;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.caption {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    color: #010101;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .image-item {
+        width: calc(25% - 20px); /* Adjust width for medium screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        padding: 15px;
+    }
+    p1 {
+        font-size: 1.2rem;
+    }
+    .image-item {
+        width: 100%; /* Full width for small screens */
+    }
+    .image-container img {
+        max-width: 100px;
+        height: auto; /* Adjust for smaller images */
+    }
+    .caption {
+        font-size: 0.8rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>We are providing videos for the following courses and subjects:</p1>
+    </div>
+    <div class="image-container">
+        <div class="image-item">
+            
+                <img src="programming.webp" alt="Programming Languages">
+            
+            <div class="caption"><a href="proglang.html">Programming Languages</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="ai.jpg" alt="Artificial Intelligence">
+            
+            <div class="caption"><a href="ai.html">Artificial Intelligence</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="ml.jpg" alt="Machine Learning">
+          
+            <div class="caption"><a href="ml.html">Machine Learning</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="dsa.png" alt="Data Structures and Algorithms">
+           
+            <div class="caption"><a href="dsa.html">Data Structures and Algorithms</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="web.jpg" alt="Web Development">
+           
+            <div class="caption"><a href="webdev.html">Web Development</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="cyber.jpg" alt="Cyber Security">
+            
+            <div class="caption"><a href="cyber.html">Cyber Security</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="iot.png"  alt="Internet of Things">
+            
+            <div class="caption"><a href="iot.html">Internet of Things</a></div>
+        </div>
+        
+        <div class="image-item">
+          
+                <img src="cloud.jpg" alt="Cloud Computing">
+            
+            <div class="caption"><a href="cloud.html">Cloud Computing</a></div>
+        </div>
+       
+        <div class="image-item">
+            
+                <img src="mobile.jpg" alt="Mobile Development">
+            
+            <div class="caption"><a href="mobile.html">Mobile Development</a></div>
+        </div>
+        
+        <div class="image-item">
+            
+                <img src="dbms.webp" alt="Database Management Systems">
+            
+            <div class="caption"><a href="dbms.html">Database Management Systems</a></div>
+        </div>
+      
+        <div class="image-item">
+            
+                <img src="devops.png"  alt="DevOps">
+            
+            <div class="caption"><a href="devops.html">DevOps</a></div>
+        </div>
+        
+        <div class="image-item">
+            
+                <img src="se.jpg"  alt="Software Engineering">
+           
+            <div class="caption"><a href="se.html">Software Engineering</a></div>
+        </div>
+     
+        <div class="image-item">
+            
+                <img src="data.jpg"  alt="Data Science">
+            
+            <div class="caption"><a href="dataanalytics.html">Data Analytics</a></div>
+        </div>
+        
+        <div class="image-item">
+            
+                <img src="game.jpg"  alt="Game Development">
+            
+            <div class="caption"><a href="game.html">Game Development</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="os.jpg" alt="Operating System">
+           
+            <div class="caption"><a href="os.html">Operating System</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="data science.jpg" alt="Data Science">
+            
+            <div class="caption"><a href="datascience.html">Data Science</a></div>
+        </div>
+        <div class="image-item">
+                <img src="toc.jpg" alt="Toc">
+            
+            <div class="caption"><a href="toc.html">Theory Of Computation</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="cn.jpg" alt="Computer networks">
+            
+            <div class="caption"><a href="cn.html">Computer Networks</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="cv.jpg" alt="Computer vision">
+            
+            <div class="caption"><a href="cv.html">Computer Vision</a></div>
+        </div> 
+        <div class="image-item">
+        
+                <img src="ada.jpg" alt="Analysis and Design of algorithms">
+           
+            <div class="caption"><a href="ada.html">Analysis and Design of algorithms</a></div>
+        </div>    
+        <div class="image-item">
+            
+                <img src="nlp.jpg" alt="Natural Language Processing">
+            
+            <div class="caption"><a href="nlp.html">Natural Language Processing</a></div>
+        </div> 
+        <div class="image-item">
+           
+                <img src="dl.jpg" alt="Deep Learning">
+            
+            <div class="caption"><a href="dl.html">Deep Learning</a></div>
+        </div>  
+        <div class="image-item">
+           
+                <img src="block.jpg" alt="Block Chaining">
+            
+            <div class="caption"><a href="blockchaining.html">Block Chaining</a></div>
+        </div>     
+    </div>
+</body>
+</html>

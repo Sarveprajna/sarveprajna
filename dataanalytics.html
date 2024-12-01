@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+          :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Data Analytics</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+ 
+    <script>
+
+const visualVideos = [
+    {
+        id: 1,
+        title: "Data Analytics Basics - Introduction to Data Concepts",
+        description: "Discover the foundational concepts of data analytics, including data collection, data cleaning, and basic statistical techniques used to uncover insights from raw data.",
+        url: "https://www.youtube.com/playlist?list=PLOWRNl6YgsT79ezWdEhOjvK4D-cQfr7ys",
+        thumbnail: "da1.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 2,
+        title: "Master Data Analytics in 12 Hours - Full Data Course",
+        description: "An intensive 12-hour course covering key data analytics methods, from exploratory data analysis (EDA) to predictive modeling, using real-world datasets.",
+        url: "https://www.youtube.com/playlist?list=PLEiEAq2VkUUKgEFXH1tBbHwq38oWYDScU",
+        thumbnail: "da2.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 3,
+        title: "Data Analytics for Beginners - A Hands-On Introduction",
+        description: "Get started with data analytics by learning the core principles and tools used to explore and visualize data, including popular libraries like Pandas and Matplotlib.",
+        url: "https://www.youtube.com/playlist?list=PLxzTa0VPR9ryvGSuCm4RS8aeAvOLXz9XM",
+        thumbnail: "da3.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 4,
+        title: "Data Analytics Fundamentals - Learn Data Analytics in 12 Hours",
+        description: "Learn the fundamentals of data analytics, including data wrangling, data visualization, and statistical analysis to help you interpret and communicate insights effectively.",
+        url: "https://www.youtube.com/playlist?list=PLUaB-1hjhk8FE_XZ87vPPSfHqb6OcM0cF",
+        thumbnail: "da4.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 5,
+        title: "Comprehensive Data Analytics Course - Master Data Analytics in 12 Hours",
+        description: "A complete guide to data analytics, covering everything from data preparation to advanced modeling techniques, with a focus on business analytics and decision-making.",
+        url: "https://www.youtube.com/playlist?list=PLunlGNVWDAaY7AeDDzTeu4-DD3g7zmAXs",
+        thumbnail: "da5.png",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 6,
+        title: "Introduction to Data Analytics - Beginner's Guide to Data Insights",
+        description: "Begin your data analytics journey by learning essential concepts like data structures, basic statistics, and visualization techniques that allow you to derive meaningful insights.",
+        url: "https://www.youtube.com/playlist?list=PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ",
+        thumbnail: "da1.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 7,
+        title: "Data Analytics Crash Course - Build Your First Analytics Project in 12 Hours",
+        description: "This crash course takes you through the process of building a complete data analytics project, including data extraction, cleaning, analysis, and visual storytelling with the results.",
+        url: "https://www.youtube.com/playlist?list=PLLy_2iUCG87CNafffzNZPVa9rW-QmOmEv",
+        thumbnail: "da2.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 8,
+        title: "Complete Data Analytics Training - Learn Data Analytics in 12 Hours",
+        description: "Master the essentials of data analytics by learning how to work with large datasets, clean and preprocess data, and create compelling visualizations to communicate your findings.",
+        url: "https://www.youtube.com/playlist?list=PLYwpaL_SFmcD_agAK_MpCDJdDXFuJqS9X",
+        thumbnail: "da3.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 9,
+        title: "Data Analytics Essentials - Learn Core Data Techniques in 12 Hours",
+        description: "This course will cover the essential skills of data analytics, including hypothesis testing, data transformation, and using tools like SQL and Excel to analyze datasets.",
+        url: "https://www.youtube.com/playlist?list=PLmejDGrsgFyBCxF37lewZtX6c1kJXyLt3",
+        thumbnail: "da4.jpg",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    },
+    {
+        id: 10,
+        title: "Advanced Data Analytics Training - Full Data Analytics Course",
+        description: "Take your data analytics skills to the next level with advanced topics such as machine learning algorithms, predictive analytics, and building end-to-end data analytics solutions.",
+        url: "https://www.youtube.com/playlist?list=PLrN_S08trZepom2bLaBTt0QQt2XnmC7dc",
+        thumbnail: "da5.png",
+        difficulty: "full course",
+        topic: "Data Analytics"
+    }
+];
+
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

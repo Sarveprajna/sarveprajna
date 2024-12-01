@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Cloud Computing</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <script>
+
+const visualVideos = [
+    {
+        id: 1,
+        title: "Cloud Computing Basics - Introduction to Cloud Technologies",
+        description: "Explore the foundational concepts of cloud computing, including cloud deployment models, services, and key technologies driving the cloud revolution.",
+        url: "https://www.youtube.com/playlist?list=PLYwpaL_SFmcCyQH0n9GHfwviu6KeJ46BV",
+        thumbnail: "cc1.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 2,
+        title: "Master Cloud Computing in 12 Hours - Complete Cloud Computing Course",
+        description: "An intensive 12-hour course covering advanced cloud computing topics such as cloud architecture, storage, and scalability techniques.",
+        url: "https://www.youtube.com/playlist?list=PL9FuOtXibFjUE8MpVv6uiAWfj5E3dsBZR",
+        thumbnail: "cc2.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 3,
+        title: "Cloud Computing for Beginners - A Practical Introduction",
+        description: "Get started with cloud computing by learning about cloud infrastructure, services like IaaS, PaaS, and SaaS, and how businesses leverage the cloud.",
+        url: "https://www.youtube.com/playlist?list=PLV8vIYTIdSnaKSiSGvJf2QquSN4lEzGob",
+        thumbnail: "cc3.png",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 4,
+        title: "Cloud Computing Fundamentals - Protecting Your Digital Assets in the Cloud",
+        description: "Learn the fundamental techniques and tools for securing cloud-based assets, including cloud security practices, threat detection, and vulnerability management.",
+        url: "https://www.youtube.com/playlist?list=PLEiEAq2VkUUIJ3o1tehvtux0_Ynf42CBN",
+        thumbnail: "cc4.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 5,
+        title: "Comprehensive Cloud Computing Course - Master Cloud Computing in 12 Hours",
+        description: "A complete guide to cloud computing, covering everything from cloud security and architecture to services like AWS, Azure, and Google Cloud Platform.",
+        url: "https://www.youtube.com/playlist?list=PL9ooVrP1hQOFtZ5oAAeOgi_nH-txMcDMu",
+        thumbnail: "cc5.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 6,
+        title: "Introduction to Cloud Computing - Beginner's Guide to the Cloud",
+        description: "Start your journey into cloud computing by learning key concepts like cloud services, cloud migration, and how cloud computing is transforming business operations.",
+        url: "https://www.youtube.com/playlist?list=PLrjkTql3jnm86_Jr9195OaqN-HeiBy49I",
+        thumbnail: "cc1.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 7,
+        title: "Cloud Computing Crash Course - Build Your First Cloud App in 12 Hours",
+        description: "This crash course guides you through building your first cloud-based application, including using cloud services to deploy and manage applications.",
+        url: "https://www.youtube.com/playlist?list=PLL7liBDYa4YaKc07Ht4YWc1ZLSpiUFOnC",
+        thumbnail: "cc2.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 8,
+        title: "Complete Cloud Computing Training - Learn Cloud Computing in 12 Hours",
+        description: "Master the essentials of cloud computing, from cloud infrastructure to virtualization, cloud security, and hands-on practices used by industry professionals.",
+        url: "https://www.youtube.com/playlist?list=PLuAADu3OvBt6yZrsEpeYt7m5Yy0lIFO8X",
+        thumbnail: "cc3.png",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 9,
+        title: "Cloud Computing Essentials - Learn Core Cloud Skills in 12 Hours",
+        description: "This course covers essential skills for working with cloud platforms, including cloud storage, cloud security, and using cloud services for scalability and flexibility.",
+        url: "https://www.youtube.com/playlist?list=PLHEcKKWWhXy99AyX0IM6_U5nOHN2LIXcg",
+        thumbnail: "cc4.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    },
+    {
+        id: 10,
+        title: "Advanced Cloud Computing Training - Full Cloud Computing Course",
+        description: "Take your cloud computing skills to the next level by learning advanced topics like cloud architecture, multi-cloud strategies, and managing large-scale cloud deployments.",
+        url: "https://www.youtube.com/playlist?list=PL-JvKqQx2AtfQ8cGyKsFE7Tj2FyB1yCkd",
+        thumbnail: "cc5.jpg",
+        difficulty: "full course",
+        topic: "Cloud Computing"
+    }
+];
+
+
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

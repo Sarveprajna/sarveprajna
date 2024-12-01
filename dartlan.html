@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+
+const visualVideos = [
+    {
+        id: '1',
+        title: 'Dart for Beginners - Learn Dart Programming',
+        description: 'Get started with Dart programming in this comprehensive guide for beginners.',
+        url: 'https://www.youtube.com/playlist?list=PLeKQz1VjpjFqqXLvQ8rTnYxZcUqEGA0dm',
+        thumbnail: "dv.png",
+        difficulty: 'full course',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '2',
+        title: 'Dart Full Course - Learn Dart in 12 Hours',
+        description: 'A detailed Dart programming course designed for beginners to master Dart basics.',
+        url: 'https://www.youtube.com/playlist?list=PLlxmoA0rQ-LyHW9voBdNo4gEEIh0SjG-q',
+        thumbnail: "dv.png",
+        difficulty: 'full course',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '3',
+        title: 'Dart Tutorial - Dart for Beginners',
+        description: 'An introductory course covering essential Dart programming concepts.',
+        url: 'https://www.youtube.com/playlist?list=PLz7ymP4HzwSHvy3RGqCDE-gQJJLabouLI',
+        thumbnail: "dv.png",
+        difficulty: 'full course',
+        topic: 'Dart Programming'
+    }
+];
+
+const auditoryVideos = [
+    {
+        id: '1',
+        title: 'Audio Lecture: Dart Programming Basics',
+        description: 'An in-depth audio lecture covering Dart programming fundamentals for auditory learners.',
+        url: 'https://www.youtube.com/playlist?list=PL4cUxeGkcC9iVGY3ppchN9kIauln8IiEh',
+        thumbnail: "da.png",
+        difficulty: 'audio guide',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '2',
+        title: 'Podcast: Essential Dart Programming Concepts',
+        description: 'A podcast that discusses key concepts in Dart programming for listening comprehension.',
+        url: 'https://www.youtube.com/playlist?list=PLFyjjoCMAPtwqUyUJF-2bNheo8J7wJuFZ',
+        thumbnail: "da.png",
+        difficulty: 'podcast',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '3',
+        title: 'Lecture Audio: Advanced Dart Techniques Explained',
+        description: 'An advanced lecture on Dart programming techniques, formatted as an auditory experience.',
+        url: 'https://www.youtube.com/playlist?list=PL9n0l8rSshSlpNWvY4eu_5Oq8l4MRvppT',
+        thumbnail: "da.png",
+        difficulty: 'lecture',
+        topic: 'Dart Programming'
+    }
+];
+
+const readVideos = [
+    {
+        id: '1',
+        title: 'Step-by-Step Guide to Dart Programming',
+        description: 'A comprehensive Dart programming guide that includes code walkthroughs and written annotations.',
+        url: 'https://www.youtube.com/playlist?list=PLWCLxMult9xeeY5NDx4JIWqEnXnlG3fKc',
+        thumbnail: "dr.jpg",
+        difficulty: 'text-based guide',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '2',
+        title: 'In-Depth Dart Programming Concepts',
+        description: 'Focuses on written explanations and coding exercises for each Dart programming concept.',
+        url: 'https://www.youtube.com/watch?v=c-ydMfJNfyY&pp=ygUiZGFydCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "dr.jpg",
+        difficulty: 'text & code examples',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '3',
+        title: 'Comprehensive Dart Tutorial for Beginners',
+        description: 'A detailed Dart tutorial with written explanations of key concepts and coding techniques.',
+        url: 'https://www.youtube.com/watch?v=R2sRhDq7qKk&pp=ygUiZGFydCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "dr.jpg",
+        difficulty: 'text-based tutorial',
+        topic: 'Dart Programming'
+    }
+];
+
+const logicalVideos = [
+    {
+        id: '1',
+        title: 'Mastering Dart Programming Logic',
+        description: 'A logical breakdown of Dart programming concepts and how they work together.',
+        url: 'https://www.youtube.com/watch?v=60wJn1T2sp8&list=PLnkSW69mofsPVD3FHduEzaCbzOxoevdQQ',
+        thumbnail: "dl.jpg",
+        difficulty: 'conceptual guide',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '2',
+        title: 'Dart Programming Logic Explained',
+        description: 'Understand the logical structure and flow of Dart programming with real-life examples.',
+        url: 'https://www.youtube.com/playlist?list=PLCx9EfWLD3_baMz2OuNh7rG7PGJjgbGoe',
+        thumbnail: "dl.jpg",
+        difficulty: 'logically structured',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '3',
+        title: 'Decoding Dart Programming Logic',
+        description: 'An in-depth explanation of Dart programming through logical examples and exercises.',
+        url: 'https://www.youtube.com/playlist?list=PLptHs0ZDJKt_fLp8ImPQVc1obUJKDSQL7',
+        thumbnail: "dl.jpg",
+        difficulty: 'concept-focused',
+        topic: 'Dart Programming'
+    }
+];
+
+const solitaryVideos = [
+    {
+        id: '1',
+        title: 'Dart Programming: Learn at Your Own Pace',
+        description: 'A solitary video for self-paced learning of Dart programming basics and advanced techniques.',
+        url: 'https://www.youtube.com/playlist?list=PL6yRaaP0WPkVLSOchfoIA0ZXySz4eSYV2',
+        thumbnail: "ds.jpg",
+        difficulty: 'self-paced guide',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '2',
+        title: 'Learn Dart Alone: No Distractions',
+        description: 'A solitary study session to focus on learning Dart independently without external interruptions.',
+        url: 'https://www.youtube.com/playlist?list=PLFyjjoCMAPtwxAmI5XCUzGdyfGQkvTLY2',
+        thumbnail: "ds.jpg",
+        difficulty: 'no distractions',
+        topic: 'Dart Programming'
+    },
+    {
+        id: '3',
+        title: 'Complete Dart Programming Course',
+        description: 'A fully solitary Dart programming course for deep and focused learning.',
+        url: 'https://www.youtube.com/playlist?list=PLRMx7dqC9wuhqntXXiuUT8yEW-Qyw0wLB',
+        thumbnail: "ds.jpg",
+        difficulty: 'full course',
+        topic: 'Dart Programming'
+    }
+];
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+        generateVideoCards(auditoryVideos, 'auditoryVideosGrid');
+        generateVideoCards(readVideos, 'readVideosGrid');
+        generateVideoCards(logicalVideos, 'logicalVideosGrid');
+        generateVideoCards(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

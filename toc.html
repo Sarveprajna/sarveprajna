@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Theory of Computation</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+   
+
+    <script>
+
+const visualVideos  =
+
+ [
+    {
+        id: 1,
+        title: "TOC Basics - Introduction to Theory of Computation Concepts",
+        description: "Explore the foundational concepts of Theory of Computation, including formal languages, automata theory, and Turing machines.",
+        url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiFM9Lj5G9G_76adtyb4ef7i",
+        thumbnail: "toc1.png",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 2,
+        title: "Master TOC in 12 Hours - Complete Theory of Computation Course",
+        description: "An intensive 12-hour course covering advanced TOC topics such as finite automata, regular expressions, context-free grammars, and decidability.",
+        url: "https://www.youtube.com/playlist?list=PLrjkTql3jnm_TWSXXvWX1_jX-L6f1QJSx",
+        thumbnail: "toc2.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 3,
+        title: "TOC for Beginners - A Practical Introduction",
+        description: "Get started with Theory of Computation by learning about the basic types of automata, languages, and the concept of computational power.",
+        url: "https://www.youtube.com/playlist?list=PL1QH9gyQXfgsUBfYUR0WirJASgif4pHVX",
+        thumbnail: "toc3.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 4,
+        title: "TOC Fundamentals - Building a Strong Foundation in Theory of Computation",
+        description: "Learn essential techniques for understanding the power of computation, including the theory behind regular languages, context-free languages, and Turing machines.",
+        url: "https://www.youtube.com/playlist?list=PLmXKhU9FNesSdCsn6YQqu9DmXRMsYdZ2T",
+        thumbnail: "toc4.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 5,
+        title: "Comprehensive TOC Course - Master Theory of Computation in 12 Hours",
+        description: "A complete guide to Theory of Computation, covering everything from formal languages, automata theory, context-free languages, and computational complexity.",
+        url: "https://www.youtube.com/playlist?list=PLXj4XH7LcRfBkMlS_9aebcY78NLFwhE4M",
+        thumbnail: "toc5.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 6,
+        title: "Introduction to TOC - Beginner's Guide to Theory of Computation",
+        description: "Start your journey into TOC by learning the fundamentals, such as different types of automata (finite, pushdown, Turing) and the importance of languages in computation.",
+        url: "https://www.youtube.com/playlist?list=PLBlnK6fEyqRgp46KUv4ZY69yXmpwKOIev",
+        thumbnail: "toc1.png",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 7,
+        title: "TOC Crash Course - Build Your Understanding of TOC in 12 Hours",
+        description: "This crash course provides an overview of TOC concepts, focusing on the basics of automata, languages, and computation theory.",
+        url: "https://www.youtube.com/playlist?list=PLC36xJgs4dxGvebewU4z2CZYo-8nB93E7",
+        thumbnail: "toc2.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 8,
+        title: "Complete TOC Training - Learn Theory of Computation in 12 Hours",
+        description: "Master the essentials of TOC, from finite automata to the study of decidability and complexity in computation.",
+        url: "https://www.youtube.com/playlist?list=PLz8TdOA7NTzTdFM93ak-qBVpX1aMFuw9c",
+        thumbnail: "toc3.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 9,
+        title: "TOC Essentials - Learn Core Theory of Computation Skills in 12 Hours",
+        description: "This course covers the essential concepts in TOC, including regular languages, Turing machines, and the complexity of computational problems.",
+        url: "https://www.youtube.com/watch?v=9kuynHcM3UA&pp=ygUMdG9jIHBsYXlsaXN0",
+        thumbnail: "toc4.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    },
+    {
+        id: 10,
+        title: "Advanced TOC Training - Full Theory of Computation Course",
+        description: "Take your TOC skills to the next level by exploring advanced topics like undecidability, complexity theory, and the limits of computation.",
+        url: "https://www.youtube.com/watch?v=58N2N7zJGrQ&pp=ygUMdG9jIHBsYXlsaXN0",
+        thumbnail: "toc5.jpg",
+        difficulty: "full course",
+        topic: "Theory of Computation"
+    }
+];
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

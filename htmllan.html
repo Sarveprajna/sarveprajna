@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+
+const visualVideos = [
+    {
+        id: '1',
+        title: 'HTML for Beginners - Learn HTML Programming',
+        description: '<p>Get started with HTML programming in this comprehensive guide for beginners.</p>',
+        url: 'https://www.youtube.com/playlist?list=PLr6-GrHUlVf_ZNmuQSXdS197Oyr1L9sPB',
+        thumbnail: "htv.png",
+        difficulty: 'full course',
+        topic: 'HTML Programming'
+    },
+    {
+        id: '2',
+        title: 'HTML Full Course - Learn HTML in 12 Hours',
+        description: '<p>A detailed HTML programming course designed for beginners to master HTML basics.</p>',
+        url: 'https://www.youtube.com/playlist?list=PL724pdDXl9Q1KxL7dQ6HlyjO7tbJzfh5f',
+        thumbnail: "htv.png",
+        difficulty: 'full course',
+        topic: 'HTML Programming'
+    }
+];
+
+const auditoryVideos = [
+    {
+        id: '1',
+        title: 'Audio Lecture: HTML Programming Basics',
+        description: '<p>An in-depth audio lecture covering HTML programming fundamentals for auditory learners.</p>',
+        url: 'https://www.youtube.com/playlist?list=PLu71SKxNbfoDBNF5s-WH6aLbthSEIMhMI',
+        thumbnail: "hta.jpg",
+        difficulty: 'audio guide',
+        topic: 'HTML Programming'
+    },
+    {
+        id: '2',
+        title: 'Podcast: Essential HTML Programming Concepts',
+        description: '<p>A podcast that discusses key concepts in HTML programming for listening comprehension.</p>',
+        url: 'https://www.youtube.com/watch?v=HcOc7P5BMi4&pp=ygUiaHRtbCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "hta.jpg",
+        difficulty: 'podcast',
+        topic: 'HTML Programming'
+    }
+];
+
+const readVideos = [
+    {
+        id: '1',
+        title: 'Step-by-Step Guide to HTML Programming',
+        description: '<p>A comprehensive HTML programming guide that includes code walkthroughs and written annotations.</p>',
+        url: 'https://www.youtube.com/playlist?list=PL8p2I9GklV44CbA1EsDKpZb8mZo8IFbIQ',
+        thumbnail: "htr.jpg",
+        difficulty: 'text-based guide',
+        topic: 'HTML Programming'
+    },
+    {
+        id: '2',
+        title: 'In-Depth HTML Programming Concepts',
+        description: '<p>Focuses on written explanations and coding exercises for each HTML programming concept.</p>',
+        url: 'https://www.youtube.com/playlist?list=PLdYkObur3tQtBTbYirZGcrWPuPRmmDA6n',
+        thumbnail: "htr.jpg",
+        difficulty: 'text & code examples',
+        topic: 'HTML Programming'
+    }
+];
+
+const logicalVideos = [
+    {
+        id: '1',
+        title: 'Mastering HTML Programming Logic',
+        description: '<p>A logical breakdown of HTML programming concepts and how they work together.</p>',
+        url: 'https://www.youtube.com/watch?v=BsDoLVMnmZs&pp=ygUiaHRtbCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "htl.jpg",
+        difficulty: 'conceptual guide',
+        topic: 'HTML Programming'
+    },
+    {
+        id: '2',
+        title: 'HTML Programming Logic Explained',
+        description: '<p>Understand the logical structure and flow of HTML programming with real-life examples.</p>',
+        url: 'https://www.youtube.com/playlist?list=PL0b6OzIxLPbxStBQ21C2toa5uQMqHEoRT',
+        thumbnail: "htl.jpg",
+        difficulty: 'logically structured',
+        topic: 'HTML Programming'
+    }
+];
+
+const solitaryVideos = [
+    {
+        id: '1',
+        title: 'HTML Programming: Learn at Your Own Pace',
+        description: '<p>A solitary video for self-paced learning of HTML programming basics and advanced techniques.</p>',
+        url: 'https://www.youtube.com/playlist?list=PLZPZq0r_RZOPoNttk9beDhO_Bu5DA-xwP',
+        thumbnail: "hts.jpg",
+        difficulty: 'self-paced guide',
+        topic: 'HTML Programming'
+    },
+    {
+        id: '2',
+        title: 'Learn HTML Alone: No Distractions',
+        description: '<p>A solitary study session to focus on learning HTML independently without external interruptions.</p>',
+        url: 'https://www.youtube.com/playlist?list=PLP9IO4UYNF0VdAajP_5pYG-jG2JRrG72s',
+        thumbnail: "hts.jpg",
+        difficulty: 'no distractions',
+        topic: 'HTML Programming'
+    }
+];
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+        generateVideoCards(auditoryVideos, 'auditoryVideosGrid');
+        generateVideoCards(readVideos, 'readVideosGrid');
+        generateVideoCards(logicalVideos, 'logicalVideosGrid');
+        generateVideoCards(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

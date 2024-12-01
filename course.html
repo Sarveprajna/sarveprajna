@@ -9,84 +9,53 @@
             background-image: url('background.webp');
             background-size: cover;
             background-position: center;
-            background-repeat: repeat;
+            background-repeat: no-repeat;
             margin: 0;
             height: 100vh;
             width: 100vw;
             background-color: rgba(245, 245, 245, 0.8);
             background-blend-mode: lighten;
-            opacity: 0;
-            animation: fadeIn 1.2s forwards;
-            transition: opacity 0.6s;
+            font-family: Arial, sans-serif;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        .box {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: red;
+            border-radius: 20px;
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            color: white;
         }
 
-        .fadeOut {
-            opacity: 0;
-        }
-        p1{
-            font-size: 19px;
-        }
         .content-box {
             margin: 20px auto;
             width: 90%;
-            max-width: 800px;
+            max-width: 826px;
             padding: 20px;
             background-color: rgba(139, 190, 211, 0.95);
             border-radius: 20px;
             box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-            font-family: Arial, sans-serif;
-            color: #333;
-            text-align: center;
-        }
-        .box {
-            margin-top: 46px;
-            margin-left: 55px;
-            width: 1128px;
-            padding: 35px 15px;
-            background-color: red;
-            border-radius: 20px;
-            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-            font-family: 'Arial', sans-serif;
-            color: #010101;
-            line-height: 1.6;
-            height: 59px;
-            padding-top: 5px;
-            animation: float 8s ease-in-out infinite;
-        }
-        .box1{
-            margin-top: 46px;
-            margin-left: 287px;
-            width: 700px;
-            padding: 35px 15px;
-            background-color: red;
-            border-radius: 20px;
-            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
-            font-family: 'Arial', sans-serif;
-            color: #010101;
-            line-height: 1.6;
-            height: 2px;
-            padding-top: 5px;
-            animation: float 8s ease-in-out infinite;
         }
 
-        h2 {
-            font-size: 2.5rem;
+        .content-box h2 {
+            font-size: 2rem;
             color: #0077b6;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .info-box {
-            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 15px 0;
             padding: 15px;
             background-color: #f0f8ff;
             border-radius: 15px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
 
         .info-box img {
@@ -96,70 +65,124 @@
         }
 
         .info-box p {
-            font-size: 1rem;
             margin: 0;
+            font-size: 1rem;
+            color: #333;
         }
+
+        .box1 {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            padding: 15px;
+            background-color: red;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
         .arrow {
-    color: #090a0b;
-    font-size: 1.0rem;
-    animation: moveArrow 1.0s infinite;
-    display: inline-block;
-    margin-right: 5px;
-}
+            font-size: 1rem;
+            animation: moveArrow 1s infinite;
+            display: inline-block;
+            margin-right: 5px;
+        }
 
-@keyframes moveArrow {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(10px);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
+        .link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-.link {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-}
+        @keyframes moveArrow {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .info-box img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .info-box p {
+                font-size: 0.9rem;
+            }
+
+            .content-box h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .info-box img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .info-box p {
+                font-size: 0.8rem;
+            }
+
+            .content-box h2 {
+                font-size: 1.2rem;
+            }
+
+            .arrow {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="box">
-        <p1>We offer five types of YouTube videos simultaneously to cater to a variety of individuals. This approach ensures that everyone can engage with content that aligns with their unique learning preferences. Below, we explain the specific types of videos we provide.</p1>
+        <p>We offer five types of YouTube videos simultaneously to cater to a variety of individuals. This approach ensures that everyone can engage with content that aligns with their unique learning preferences. Below, we explain the specific types of videos we provide.</p>
     </div>
+
     <div class="content-box">
         <h2>Learning Styles</h2>
 
         <div class="info-box">
             <img src="visual.webp" alt="Visual Learners">
-            <p><strong>Visual Learners:</strong> Those who learn best with images, diagrams, and visual aids can refer to first channel.</p>
+            <p><strong>Visual Learners:</strong> Those who learn best with images, diagrams, and visual aids can refer to the first channel.</p>
         </div>
-        
+
         <div class="info-box">
             <img src="audio.webp" alt="Auditory Learners">
-            <p><strong>Auditory Learners:</strong> Those who learn effectively by hearing information can refer to second channel.</p>
+            <p><strong>Auditory Learners:</strong> Those who learn effectively by hearing information can refer to the second channel.</p>
         </div>
-        
+
         <div class="info-box">
             <img src="read.webp" alt="Read/Write Learners">
-            <p><strong>Read/Write Learners:</strong> Those who excel with text-based information and note-taking can refer to third channel.</p>
+            <p><strong>Read/Write Learners:</strong> Those who excel with text-based information and note-taking can refer to the third channel.</p>
         </div>
-        
+
         <div class="info-box">
-            <img src= "logical.webp" alt="Logical Learners">
-            <p><strong>Logical Learners:</strong> Those who thrive on reasoning and structured explanations can refer to fourth channel.</p>
+            <img src="logical.webp" alt="Logical Learners">
+            <p><strong>Logical Learners:</strong> Those who thrive on reasoning and structured explanations can refer to the fourth channel.</p>
         </div>
-        
+
         <div class="info-box">
             <img src="solitary.webp" alt="Solitary Learners">
-            <p><strong>Solitary Learners:</strong> Those who prefer self-study and reflection can refer to fifth channel.</p>
+            <p><strong>Solitary Learners:</strong> Those who prefer self-study and reflection can refer to the fifth channel.</p>
         </div>
     </div>
+
     <div class="box1">
-        <p1>If you want to know more about the courses and subjects we provide <span class="arrow">➔</span><a href="all.html" class="link"> click here</a></p1>
+        <p>If you want to know more about the courses and subjects we provide <span class="arrow">➔</span><a href="all.html" class="link"> click here</a></p>
     </div>
 </body>
 </html>

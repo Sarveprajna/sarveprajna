@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+          :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Data Structures And Algorithms using C</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Data Structures And Algorithms using C++</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Data Structures And Algorithms using Python</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Data Structures And Algorithms using java</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Data Structures And Algorithms using C#</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+
+        const visualVideos = [
+   
+    {
+        id: 1,
+        title: "DSA with C for Beginners - Learn Data Structures and Algorithms",
+        description: "Get started with Data Structures and Algorithms (DSA) in C programming in this comprehensive guide for beginners.",
+        url: "https://www.youtube.com/playlist?list=PLf0LpPWikpPfA_vez2NndnYuQy6WkpTzc",
+        thumbnail: "dsac.jpg",
+        difficulty: "full course",
+        topic: "Data Structures & Algorithms in C"
+    },
+    {
+        id: 2,
+        title: "DSA with C Full Course - Learn DSA in 12 Hours",
+        description: "A detailed Data Structures and Algorithms (DSA) course designed for beginners to master the fundamentals in C programming in 12 hours.",
+        url: "https://www.youtube.com/playlist?list=PLdo5W4Nhv31bbKJzrsKfMpo_grxuLl8LU",
+        thumbnail: "dsac.jpg",
+        difficulty: "full course",
+        topic: "Data Structures & Algorithms in C"
+    },
+    {
+        id: 3,
+        title: "DSA with C for Beginners - Learn Data Structures and Algorithms",
+        description: "Start your journey with Data Structures and Algorithms (DSA) in C with this beginner-friendly course.",
+        url: "https://www.youtube.com/playlist?list=PLBlnK6fEyqRhX6r2uhhlubuF5QextdCSM",
+        thumbnail: "dsac.jpg",
+        difficulty: "full course",
+        topic: "Data Structures & Algorithms in C"
+    },
+    {
+        id: 4,
+        title: "DSA with C Full Course - Learn DSA in 12 Hours",
+        description: "Learn Data Structures and Algorithms in C in this comprehensive 12-hour full course for beginners.",
+        url: "https://www.youtube.com/playlist?list=PLVlQHNRLflP_OxF1QJoGBwH_TnZszHR_j",
+        thumbnail: "dsac.jpg",
+        difficulty: "full course",
+        topic: "Data Structures & Algorithms in C"
+    },
+    {
+        id: 5,
+        title: "DSA with C Full Course - Learn DSA in 12 Hours",
+        description: "A complete Data Structures and Algorithms course in C designed to help you master the concepts in just 12 hours.",
+        url: "https://www.youtube.com/playlist?list=PLYM2_EX_xVvVMXkQt4qqosJTplBq5v5oX",
+        thumbnail: "dsac.jpg",
+        difficulty: "full course",
+        topic: "Data Structures & Algorithms in C"
+    }
+
+
+
+        ];
+
+
+        const auditoryVideos = [
+          
+    {
+        id: 1,
+        title: "Audio Lecture: DSA with C++ Basics",
+        description: "An in-depth audio lecture covering Data Structures and Algorithms (DSA) fundamentals in C++ for auditory learners.",
+        url: "https://www.youtube.com/playlist?list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt",
+        thumbnail: "dsac++.jpg",
+        difficulty: "audio guide",
+        topic: "Data Structures & Algorithms in C++"
+    },
+    {
+        id: 2,
+        title: "Podcast: Essential DSA with C++ Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) using C++ for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLDzeHZWIZsTryvtXdMr6rPh4IDexB5NIA",
+        thumbnail: "dsac++.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C++"
+    },
+    {
+        id: 3,
+        title: "Podcast: Essential DSA with C++ Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) using C++ for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLfqMhTWNBTe0b2nM6JHVCnAkhQRGiZMSJ",
+        thumbnail: "dsac++.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C++"
+    },
+    {
+        id: 4,
+        title: "Podcast: Essential DSA with C++ Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) using C++ for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLxgZQoSe9cg0df_GxVjz3DD_Gck5tMXAd",
+        thumbnail: "dsac++.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C++"
+    },
+    {
+        id: 5,
+        title: "Podcast: Essential DSA with C++ Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) using C++ for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLQEaRBV9gAFu4ovJ41PywklqI7IyXwr01",
+        thumbnail: "dsac++.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C++"
+    }
+
+
+];
+
+       
+
+        const readVideos = [
+            
+  
+    {
+        id: 1,
+        title: "Mastering DSA with Python Logic",
+        description: "A logical breakdown of Data Structures and Algorithms (DSA) concepts and how they work together in Python.",
+        url: "https://www.youtube.com/playlist?list=PL7ersPsTyYt1HnCgrT6Up-pan4yLBpyFs",
+        thumbnail: "dsapy.jpg",
+        difficulty: "conceptual guide",
+        topic: "Data Structures & Algorithms in Python"
+    },
+    {
+        id: 2,
+        title: "DSA with Python Logic Explained",
+        description: "Understand the logical structure and flow of Data Structures and Algorithms (DSA) with Python through real-life examples.",
+        url: "https://www.youtube.com/playlist?list=PLeo1K3hjS3uu_n_a__MI_KktGTLYopZ12",
+        thumbnail: "dsapy.jpg",
+        difficulty: "logically structured",
+        topic: "Data Structures & Algorithms in Python"
+    },
+    {
+        id: 3,
+        title: "Podcast: Essential DSA with Python Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Python for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLzgPDYo_3xukPJdH6hVQ6Iic7KiJuoA-l",
+        thumbnail: "dsapy.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Python"
+    },
+    {
+        id: 4,
+        title: "Podcast: Essential DSA with Python Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Python for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLzgPDYo_3xukPJdH6hVQ6Iic7KiJuoA-l",
+        thumbnail: "dsapy.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Python"
+    },
+    {
+        id: 5,
+        title: "Podcast: Essential DSA with Python Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Python for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLVkDztYhxUGH9AubH9hLy_JYam8EZ9VKs",
+        thumbnail: "dsapy.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Python"
+    }
+
+
+
+        ];
+
+        const logicalVideos = [
+           
+ 
+    {
+        id: 1,
+        title: "Mastering DSA with Java Logic",
+        description: "A logical breakdown of Data Structures and Algorithms (DSA) concepts and how they work together in Java.",
+        url: "https://www.youtube.com/playlist?list=PLfqMhTWNBTe3LtFWcvwpqTkUSlB32kJop",
+        thumbnail: "dsaja.jpg",
+        difficulty: "conceptual guide",
+        topic: "Data Structures & Algorithms in Java"
+    },
+    {
+        id: 2,
+        title: "DSA with Java Logic Explained",
+        description: "Understand the logical structure and flow of Data Structures and Algorithms (DSA) with real-life examples in Java.",
+        url: "https://www.youtube.com/playlist?list=PL9gnSGHSqcnr_DxHsP7AW9ftq0AtAyYqJ",
+        thumbnail: "dsaja.jpg",
+        difficulty: "logically structured",
+        topic: "Data Structures & Algorithms in Java"
+    },
+    {
+        id: 3,
+        title: "Podcast: Essential DSA with Java Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Java for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PL6Zs6LgrJj3tDXv8a_elC6eT_4R5gfX4d",
+        thumbnail: "dsaja.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Java"
+    },
+    {
+        id: 4,
+        title: "Podcast: Essential DSA with Java Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Java for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLd3UqWTnYXOkF2wPf6GCayUXL495UJSaq",
+        thumbnail: "dsaja.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Java"
+    },
+    {
+        id: 5,
+        title: "Podcast: Essential DSA with Java Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with Java for listening comprehension.",
+        url: "https://www.youtube.com/watch?v=xWLxhF3b5P8&t=4214s&pp=ygUNZHNhIHdpdGggamF2YQ%3D%3D",
+        thumbnail: "dsaja.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in Java"
+    }
+
+
+
+        ];
+
+        const solitaryVideos = [
+
+    {
+        id: 1,
+        title: "DSA with C#: Learn at Your Own Pace",
+        description: "A solitary video for self-paced learning of Data Structures and Algorithms (DSA) basics and advanced techniques using C#.",
+        url: "https://www.youtube.com/playlist?list=PL82C6-O4XrHf49SjEZWSa5DHN--ZRrcN_",
+        thumbnail: "dsac%23.jpg",
+        difficulty: "self-paced guide",
+        topic: "Data Structures & Algorithms in C#"
+    },
+    {
+        id: 2,
+        title: "Learn DSA with C# Alone: No Distractions",
+        description: "A solitary study session to focus on learning Data Structures and Algorithms (DSA) in C# independently without external interruptions.",
+        url: "https://www.youtube.com/playlist?list=PLtuj2vvYuJfX9ckZ1XAuOCjZq4lVW2ULS",
+        thumbnail: "dsac%23.jpg",
+        difficulty: "no distractions",
+        topic: "Data Structures & Algorithms in C#"
+    },
+    {
+        id: 3,
+        title: "Podcast: Essential DSA with C# Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with C# for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLg1RdNLpYTgBT-WBhNKmxLZoWY9TaoZdr",
+        thumbnail: "dsac%23.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C#"
+    },
+    {
+        id: 4,
+        title: "Podcast: Essential DSA with C# Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with C# for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLTgRMOcmRb3OM09NI47t8SyAag2o3P5C1",
+        thumbnail: "dsac%23.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C#"
+    },
+    {
+        id: 5,
+        title: "Podcast: Essential DSA with C# Concepts",
+        description: "A podcast that discusses key concepts in Data Structures and Algorithms (DSA) with C# for listening comprehension.",
+        url: "https://www.youtube.com/playlist?list=PLBlnK6fEyqRj9lld8sWIUNwlKfdUoPd1Y",
+        thumbnail: "dsac%23.jpg",
+        difficulty: "podcast",
+        topic: "Data Structures & Algorithms in C#"
+    }
+
+
+
+        ];
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+        generateVideoCards(auditoryVideos, 'auditoryVideosGrid');
+        generateVideoCards(readVideos, 'readVideosGrid');
+        generateVideoCards(logicalVideos, 'logicalVideosGrid');
+        generateVideoCards(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

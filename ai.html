@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+    :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Artificial Intelligence</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    
+
+    <script>
+
+        const visualVideos = [
+    {
+        id: 1,
+        title: "Artificial Intelligence Basics - Introduction to AI Concepts",
+        description: "Learn the foundational concepts of Artificial Intelligence, from AI history to its real-world applications, ideal for beginners.",
+        url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHGhOHV-nwb0HR5US5GFKFI",
+        thumbnail: "ai1.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 2,
+        title: "AI Mastery in 12 Hours - Full Artificial Intelligence Course",
+        description: "This intensive 12-hour course will guide you through machine learning algorithms, neural networks, and AI programming techniques.",
+        url: "https://www.youtube.com/playlist?list=PLEiEAq2VkUULyr_ftxpHB6DumOq1Zz2hq",
+        thumbnail: "ai2.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 3,
+        title: "AI for Beginners - A Step-by-Step Guide to Artificial Intelligence",
+        description: "Get started with AI by understanding the key concepts, learning about machine learning, and exploring AI applications in various industries.",
+        url: "https://www.youtube.com/playlist?list=PL9ooVrP1hQOGHNaCT7_fwe9AabjZI1RjI",
+        thumbnail: "ai3.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 4,
+        title: "AI Fundamentals - Learn Artificial Intelligence in 12 Hours",
+        description: "This course covers the basics of AI, including common algorithms, AI programming, and its impact on society, all within 12 hours.",
+        url: "https://www.youtube.com/watch?v=JMUxmLyrhSk&t=4626s&pp=ygUnYXJ0aWZpY2lhbCBpbnRlbGxpZ2VuY2UgY291cnNlIHBsYXlsaXN0",
+        thumbnail: "ai4.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 5,
+        title: "Comprehensive AI Course - Master Artificial Intelligence in 12 Hours",
+        description: "A complete course that covers all aspects of Artificial Intelligence, from the basics to advanced machine learning models and deep learning techniques.",
+        url: "https://www.youtube.com/playlist?list=PLPIwNooIb9vgB1DQEftkKA3qOdeC4vonA",
+        thumbnail: "ai5.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 6,
+        title: "Introduction to AI - Beginner's Guide to Artificial Intelligence",
+        description: "Start your AI journey with an introduction to the principles of AI, machine learning algorithms, and real-world applications of AI in business and technology.",
+        url: "https://www.youtube.com/playlist?list=PLp6ek2hDcoNB_YJCruBFjhF79f5ZHyBuz",
+        thumbnail: "ai6.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 7,
+        title: "Artificial Intelligence Crash Course - Learn AI in 12 Hours",
+        description: "This crash course will help you understand the fundamentals of AI, including neural networks, deep learning, and AI programming, all in 12 hours.",
+        url: "https://www.youtube.com/playlist?list=PLL7liBDYa4YaUQaPtOoxBy_QvSoCD_9Oc",
+        thumbnail: "ai7.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    },
+    {
+        id: 8,
+        title: "Complete AI Training - Learn Artificial Intelligence in 12 Hours",
+        description: "Master Artificial Intelligence in this complete 12-hour course, covering machine learning, deep learning, and real-world AI applications.",
+        url: "https://www.youtube.com/playlist?list=PLwdnzlV3ogoXaceHrrFVZCJKbm_laSHcH",
+        thumbnail: "ai8.jpg",
+        difficulty: "full course",
+        topic: "Artificial Intelligence"
+    }
+];
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

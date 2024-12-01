@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+
+        const visualVideos = [
+            {
+                id: '1',
+                title: 'Ruby for Beginners - Learn Ruby Programming',
+                description: 'Get started with Ruby programming in this comprehensive guide for beginners.',
+                url: 'https://youtu.be/MS9LbOdB_NU?si=ce1zk91CnBPz_MS3',
+                thumbnail: "rv.jpg",
+                difficulty: 'full course',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '2',
+                title: 'Ruby Full Course - Learn Ruby in 12 Hours',
+                description: 'A detailed Ruby programming course designed for beginners to master Ruby basics.',
+                url: 'https://youtu.be/CIe1DxrSrhs?si=xsJQinhae_v3X9Rr',
+                thumbnail: "rv.jpg",
+                difficulty: 'full course',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '3',
+                title: 'Ruby Tutorial - Ruby for Beginners',
+                description: 'An introductory course covering essential Ruby programming concepts.',
+                url: 'https://youtu.be/UU09eguVzFE?si=rYoSxrHRJP_XHbxF',
+                thumbnail: "rv.jpg",
+                difficulty: 'full course',
+                topic: 'Ruby Programming'
+            }
+        ];
+
+        const auditoryVideos = [
+            {
+                id: '1',
+                title: 'Audio Lecture: Ruby Programming Basics',
+                description: 'An in-depth audio lecture covering Ruby programming fundamentals for auditory learners.',
+                url: 'https://youtu.be/SHzeVBrW_rA?si=E9gHjA3jiFYB_q_x',
+                thumbnail: "ra.jpg",
+                difficulty: 'audio guide',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '2',
+                title: 'Podcast: Essential Ruby Programming Concepts',
+                description: 'A podcast that discusses key concepts in Ruby programming for listening comprehension.',
+                url: 'https://youtu.be/6GMPxYsvTss?si=P2nrIJNjXACQI35_',
+                thumbnail: "ra.jpg",
+                difficulty: 'podcast',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '3',
+                title: 'Lecture Audio: Advanced Ruby Techniques Explained',
+                description: 'An advanced lecture on Ruby programming techniques, formatted as an auditory experience.',
+                url: 'https://youtu.be/t_ispmWmdjY?si=9fO0Fvsl1ZGvseVr',
+                thumbnail: "ra.jpg",
+                difficulty: 'lecture',
+                topic: 'Ruby Programming'
+            }
+        ];
+
+        const readVideos = [
+            {
+                id: '1',
+                title: 'Step-by-Step Guide to Ruby Programming',
+                description: 'A comprehensive Ruby programming guide that includes code walkthroughs and written annotations.',
+                url: 'https://youtu.be/HMotb6naTe0?si=bBc9V-MG-2iQhXO3',
+                thumbnail: "rr.png",
+                difficulty: 'text-based guide',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '2',
+                title: 'In-Depth Ruby Programming Concepts',
+                description: 'Focuses on written explanations and coding exercises for each Ruby programming concept.',
+                url: 'https://youtu.be/AjNUFNPZ7io?si=26oLuJTIXvhBbqpy',
+                thumbnail: "rr.png",
+                difficulty: 'text & code examples',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '3',
+                title: 'Comprehensive Ruby Tutorial for Beginners',
+                description: 'A detailed Ruby tutorial with written explanations of key concepts and coding techniques.',
+                url: 'https://youtu.be/Dji9ALCgfpM?si=ay_Twsnkdh72j_B-',
+                thumbnail: "rr.png",
+                difficulty: 'text-based tutorial',
+                topic: 'Ruby Programming'
+            }
+        ];
+
+        const logicalVideos = [
+            {
+                id: '1',
+                title: 'Mastering Ruby Programming Logic',
+                description: 'A logical breakdown of Ruby programming concepts and how they work together.',
+                url: 'https://youtu.be/-zv9HKx5M0g?si=BSo0MAE9XNrwiRZI',
+                thumbnail: "rl.jpg",
+                difficulty: 'conceptual guide',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '2',
+                title: 'Ruby Programming Logic Explained',
+                description: 'Understand the logical structure and flow of Ruby programming with real-life examples.',
+                url: 'https://youtu.be/wkNR1hG4yOk?si=TDSbMJcIPOSGo1Bk',
+                thumbnail: "rl.jpg",
+                difficulty: 'logically structured',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '3',
+                title: 'Decoding Ruby Programming Logic',
+                description: 'An in-depth explanation of Ruby programming through logical examples and exercises.',
+                url: 'https://youtu.be/BYUXvl_6OAY?si=F1bSOTktdmchkn6Z',
+                thumbnail: "rl.jpg",
+                difficulty: 'concept-focused',
+                topic: 'Ruby Programming'
+            }
+        ];
+
+        const solitaryVideos = [
+            {
+                id: '1',
+                title: 'Ruby Programming: Learn at Your Own Pace',
+                description: 'A solitary video for self-paced learning of Ruby programming basics and advanced techniques.',
+                url: 'https://youtu.be/CFk87gt_4JM?si=2fTNYQy18LP_c3cg',
+                thumbnail: "rs.png",
+                difficulty: 'self-paced guide',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '2',
+                title: 'Learn Ruby Alone: No Distractions',
+                description: 'A solitary study session to focus on learning Ruby independently without external interruptions.',
+                url: 'https://youtu.be/WJlfVjGt6Hg?si=ChzJ1bMuIguqH9Vy',
+                thumbnail: "rs.png",
+                difficulty: 'no distractions',
+                topic: 'Ruby Programming'
+            },
+            {
+                id: '3',
+                title: 'Complete Ruby Programming Course',
+                description: 'A fully solitary Ruby programming course for deep and focused learning.',
+                url: 'https://youtu.be/w9yNsTAp-Mg?si=uwn5OyCfdk9zGbtx',
+                thumbnail: "rs.png",
+                difficulty: 'full course',
+                topic: 'Ruby Programming'
+            }
+        ];
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+        generateVideoCards(auditoryVideos, 'auditoryVideosGrid');
+        generateVideoCards(readVideos, 'readVideosGrid');
+        generateVideoCards(logicalVideos, 'logicalVideosGrid');
+        generateVideoCards(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

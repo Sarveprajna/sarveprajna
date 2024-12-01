@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>DevOps</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+
+    <script>
+
+const visualVideos =  [
+    {
+        id: 1,
+        title: "DevOps Basics - Introduction to DevOps Concepts",
+        description: "Explore the foundational concepts of DevOps, including continuous integration, continuous delivery, and infrastructure automation.",
+        url: "https://www.youtube.com/playlist?list=PLdpzxOOAlwvIKMhk8WhzN1pYoJ1YU8Csa",
+        thumbnail: "dev1.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 2,
+        title: "Master DevOps in 12 Hours - Complete DevOps Course",
+        description: "An intensive 12-hour course covering advanced DevOps topics such as automation, containerization, CI/CD pipelines, and monitoring.",
+        url: "https://www.youtube.com/playlist?list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak",
+        thumbnail: "dev2.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 3,
+        title: "DevOps for Beginners - A Practical Introduction",
+        description: "Get started with DevOps by learning about the tools and practices for automating software deployment, building CI/CD pipelines, and collaborating across teams.",
+        url: "https://www.youtube.com/playlist?list=PLhN2ZHCXoZ_KSJ2BeTn4kmOwNI-zgGzho",
+        thumbnail: "dev3.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 4,
+        title: "DevOps Fundamentals - Building a Strong DevOps Foundation",
+        description: "Learn the fundamental techniques for setting up DevOps pipelines, managing source code, automating deployments, and using popular DevOps tools like Jenkins, Docker, and Kubernetes.",
+        url: "https://www.youtube.com/playlist?list=PLBGx66SQNZ8aPsFDwb79JrS2KQBTIZo10",
+        thumbnail: "dev4.jpg",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 5,
+        title: "Comprehensive DevOps Course - Master DevOps in 12 Hours",
+        description: "A complete guide to DevOps, covering everything from building CI/CD pipelines to deploying applications with Kubernetes, Docker, and AWS.",
+        url: "https://www.youtube.com/playlist?list=PL9ooVrP1hQOE5ZDJJsnEXZ2upwK7aTYiX",
+        thumbnail: "dev5.jpg",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 6,
+        title: "Introduction to DevOps - Beginner's Guide to DevOps Practices",
+        description: "Start your journey into DevOps by learning key concepts like automation, version control, infrastructure as code, and the role of collaboration in DevOps.",
+        url: "https://www.youtube.com/playlist?list=PLWKjhJtqVAbkzvvpY12KkfiIGso9A_Ixs",
+        thumbnail: "dev1.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 7,
+        title: "DevOps Crash Course - Build Your First DevOps Pipeline in 12 Hours",
+        description: "This crash course guides you through setting up your first DevOps pipeline, including automation of testing, deployment, and monitoring of applications.",
+        url: "https://www.youtube.com/playlist?list=PLERZXVMwiajrZhvaAp55lxeLru4Fgqz3D",
+        thumbnail: "dev2.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 8,
+        title: "Complete DevOps Training - Learn DevOps in 12 Hours",
+        description: "Master the essentials of DevOps, from version control and containerization to building CI/CD pipelines and managing infrastructure with tools like Terraform and Ansible.",
+        url: "https://www.youtube.com/playlist?list=PL0tP8lerTbX20wQ4IVD7xTZKef_pYM6lR",
+        thumbnail: "dev3.png",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 9,
+        title: "DevOps Essentials - Learn Core DevOps Skills in 12 Hours",
+        description: "This course covers essential skills for working in DevOps, including managing CI/CD pipelines, using containerization technologies, and implementing infrastructure automation.",
+        url: "https://www.youtube.com/playlist?list=PLlfy9GnSVerRqYJgVYO0UiExj5byjrW8u",
+        thumbnail: "dev4.jpg",
+        difficulty: "full course",
+        topic: "DevOps"
+    },
+    {
+        id: 10,
+        title: "Advanced DevOps Training - Full DevOps Course",
+        description: "Take your DevOps skills to the next level by learning advanced topics like cloud-native applications, container orchestration with Kubernetes, and enterprise-level automation.",
+        url: "https://www.youtube.com/playlist?list=PLy7NrYWoggjxKDRWLqkd4Kbt84XEerHhB",
+        thumbnail: "dev5.jpg",
+        difficulty: "full course",
+        topic: "DevOps"
+    }
+];
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>
+
+

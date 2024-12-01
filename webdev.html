@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Web Development</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+    <script>
+const visualVideos = [
+    {
+        id: 1,
+        title: "Web Development Basics - Introduction to Web Fundamentals",
+        description: "Dive into the basic principles of web development, including HTML, CSS, JavaScript, and the structure of modern websites.",
+        url: "https://www.youtube.com/playlist?list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w",
+        thumbnail: "wd1.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 2,
+        title: "Master Web Development in 12 Hours - Complete Web Development Course",
+        description: "An intensive 12-hour course that covers everything from HTML and CSS to JavaScript, databases, and back-end development.",
+        url: "https://www.youtube.com/playlist?list=PLfqMhTWNBTe3H6c9OGXb5_6wcc1Mca52n",
+        thumbnail: "wd2.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 3,
+        title: "Web Development for Beginners - A Hands-On Introduction",
+        description: "Get started with web development by learning about front-end technologies like HTML, CSS, and basic JavaScript.",
+        url: "https://www.youtube.com/playlist?list=PLfqMhTWNBTe0PY9xunOzsP5kmYIz2Hu7i",
+        thumbnail: "wd3.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 4,
+        title: "Web Development Fundamentals - Building a Strong Foundation",
+        description: "Learn the fundamentals of web development, including how websites are built, user interaction, and web page layouts.",
+        url: "https://www.youtube.com/playlist?list=PLu0W_9lII9agiCUZYRsvtGTXdxkzPyItg",
+        thumbnail: "wd4.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 5,
+        title: "Comprehensive Web Development Course - Master Web Development in 12 Hours",
+        description: "Covering everything from front-end to back-end technologies, this course offers a complete guide to becoming a full-stack web developer.",
+        url: "https://www.youtube.com/playlist?list=PLDzeHZWIZsTo0wSBcg4-NMIbC0L8evLrD",
+        thumbnail: "wd5.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 6,
+        title: "Introduction to Web Development - Building Your First Website",
+        description: "Start your journey into web development by learning how to build static and dynamic websites using HTML, CSS, and JavaScript.",
+        url: "https://www.youtube.com/playlist?list=PLwmDa-QvqlfjwxtXCuar4LAAsp1aL5YPv",
+        thumbnail: "wd1.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 7,
+        title: "Web Development Crash Course - Build Your First Web App in 12 Hours",
+        description: "This crash course covers the basics of web development, including HTML, CSS, JavaScript, and frameworks to build your first web application.",
+        url: "https://www.youtube.com/playlist?list=PLoYCgNOIyGAB_8_iq1cL8MVeun7cB6eNc",
+        thumbnail: "wd2.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 8,
+        title: "Complete Web Development Training - Learn Web Development in 12 Hours",
+        description: "Master core web development concepts, including front-end and back-end technologies, databases, and web application deployment.",
+        url: "https://www.youtube.com/playlist?list=PL2Kd-KQLppEFbfdJHywOu6b_GAjn3LxE1",
+        thumbnail: "wd3.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 9,
+        title: "Web Development Essentials - Key Skills for Building Websites",
+        description: "This course focuses on the essential skills needed for web development, including HTML, CSS, JavaScript, and responsive design.",
+        url: "https://www.youtube.com/playlist?list=PLwGdqUZWnOp0AZ-7h2b2CwT7eJPgQQ6jV",
+        thumbnail: "wd4.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    },
+    {
+        id: 10,
+        title: "Advanced Web Development Training - Full Web Development Course",
+        description: "Take your web development skills to the next level by exploring advanced topics like APIs, frameworks, and deploying web applications.",
+        url: "https://www.youtube.com/playlist?list=PLgWjD_CBfh0Bh9-CvRE1dIhxKsUpmx3Gj",
+        thumbnail: "wd5.jpg",
+        difficulty: "full course",
+        topic: "Web Development"
+    }
+];
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

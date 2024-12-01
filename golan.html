@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+
+        const visualVideos = [
+            {
+                id: '1',
+                title: 'Golang for Beginners - Learn Golang Programming',
+                description: 'Get started with Golang programming in this comprehensive guide for beginners.',
+                url: 'https://youtube.com/playlist?list=PLzjZaW71kMwSEVpdbHPr0nPo5zdzbDulm&si=ASBb5J_-xxvFbxPj',
+                thumbnail: "gov.png",
+                difficulty: 'full course',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '2',
+                title: 'Golang Full Course - Learn Golang in 12 Hours',
+                description: 'A detailed Golang programming course designed for beginners to master Golang basics.',
+                url: 'https://youtube.com/playlist?list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa&si=_FWXDk8BHE8UIQMV',
+                thumbnail: "gov.png",
+                difficulty: 'full course',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '3',
+                title: 'Golang Tutorial - Golang for Beginners',
+                description: 'An introductory course covering essential Golang programming concepts.',
+                url: 'https://www.youtube.com/playlist?list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM',
+                thumbnail: "gov.png",
+                difficulty: 'full course',
+                topic: 'Golang Programming'
+            }
+        ];
+    
+        const auditoryVideos = [
+            {
+                id: '1',
+                title: 'Audio Lecture: Golang Programming Basics',
+                description: 'An in-depth audio lecture covering Golang programming fundamentals for auditory learners.',
+                url: 'https://www.youtube.com/playlist?list=PLU3Rl8A6vmKcm439krer7nf_EM8eI8fAQ',
+                thumbnail: "goa.jpg",
+                difficulty: 'audio guide',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '2',
+                title: 'Podcast: Essential Golang Programming Concepts',
+                description: 'A podcast that discusses key concepts in Golang programming for listening comprehension.',
+                url: 'https://www.youtube.com/watch?v=un6ZyFkqFKo&pp=ygUcZ29sYW5nIGZ1bGwgY291cnNlIHBsYXlsaXN0IA%3D%3D',
+                thumbnail: "goa.jpg",
+                difficulty: 'podcast',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '3',
+                title: 'Lecture Audio: Advanced Golang Techniques Explained',
+                description: 'An advanced lecture on Golang programming techniques, formatted as an auditory experience.',
+                url: 'https://www.youtube.com/playlist?list=PLXQpH_kZIxTWUe-Ee-DZEX5gfeoo4tHV6',
+                thumbnail: "goa.jpg",
+                difficulty: 'lecture',
+                topic: 'Golang Programming'
+            }
+        ];
+    
+        const readVideos = [
+            {
+                id: '1',
+                title: 'Step-by-Step Guide to Golang Programming',
+                description: 'A comprehensive Golang programming guide that includes code walkthroughs and written annotations.',
+                url: 'https://www.youtube.com/playlist?list=PLzjZaW71kMwSEVpdbHPr0nPo5zdzbDulm&si=ASBb5J_-xxvFbxPj',
+                thumbnail: "gor.png",
+                difficulty: 'guide',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '2',
+                title: 'Read and Learn: Golang Syntax and Structures',
+                description: 'A resource for understanding the syntax and structures of the Go programming language.',
+                url: 'https://www.youtube.com/watch?v=rHseL6pBfFM',
+                thumbnail: "gor.png",
+                difficulty: 'tutorial',
+                topic: 'Golang Programming'
+            },
+
+            {
+                id: '3',
+                title: 'Comprehensive Golang Tutorial for Beginners',
+                description: 'A detailed Golang tutorial with written explanations of key concepts and coding techniques.',
+                url: 'https://www.youtube.com/watch?v=Q0sKAMal4WQ&pp=ygUcZ29sYW5nIGZ1bGwgY291cnNlIHBsYXlsaXN0IA%3D%3D',
+                thumbnail: "gor.png",
+                difficulty: 'text-based tutorial',
+                topic: 'Golang Programming'
+            }
+        ];
+    
+        
+    
+        const logicalVideos = [
+            {
+                id: '1',
+                title: 'Logical Flow in Golang Programming',
+                description: 'A logical breakdown of Golang programming, focusing on flow control and structures.',
+                url: 'https://www.youtube.com/playlist?list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM',
+                thumbnail: "gol.png",
+                difficulty: 'tutorial',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '2',
+                title: 'Golang Programming Logic Explained',
+                description: 'Understand the logical structure and flow of Golang programming with real-life examples.',
+                url: 'https://www.youtube.com/watch?v=wJjirJlCDh8&pp=ygUcZ29sYW5nIGZ1bGwgY291cnNlIHBsYXlsaXN0IA%3D%3D',
+                thumbnail: "gol.png",
+                difficulty: 'logically structured',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '3',
+                title: 'Decoding Golang Programming Logic',
+                description: 'An in-depth explanation of Golang programming through logical examples and exercises.',
+                url: 'https://www.youtube.com/watch?v=jFfo23yIWac&pp=ygUcZ29sYW5nIGZ1bGwgY291cnNlIHBsYXlsaXN0IA%3D%3D',
+                thumbnail: "gol.png",
+                difficulty: 'concept-focused',
+                topic: 'Golang Programming'
+            }
+        ];
+    
+        const solitaryVideos = [
+            {
+                id: '1',
+                title: 'Golang Programming: Learn at Your Own Pace',
+                description: 'A solitary video for self-paced learning of Golang programming basics and advanced techniques.',
+                url: 'https://www.youtube.com/playlist?list=PLzMcBGfZo4-mtY_SE3HuzQJzuj4VlUG0q',
+                thumbnail: "gos.jpg",
+                difficulty: 'self-paced guide',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '2',
+                title: 'Learn Golang Alone: No Distractions',
+                description: 'A solitary study session to focus on learning Golang independently without external interruptions.',
+                url: 'https://www.youtube.com/watch?v=Dp1ZcmM4fmM&list=PL6oD2syjfW7Abh0gohG3JV0PnDmJNhtgx',
+                thumbnail: "gos.jpg",
+                difficulty: 'no distractions',
+                topic: 'Golang Programming'
+            },
+            {
+                id: '3',
+                title: 'Complete Golang Programming Course',
+                description: 'A fully solitary Golang programming course for deep and focused learning.',
+                url: 'https://www.youtube.com/watch?v=3iuoQkQOx2w&list=PLS1QulWo1RIaRoN4vQQCYHWDuubEU8Vij',
+                thumbnail: "gos.jpg",
+                difficulty: 'full course',
+                topic: 'Golang Programming'
+            }
+        ];
+    
+
+
+        const renderVideos = (videos, gridId) => {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = videos.map(video => `
+                <div class="video-card">
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Video thumbnail" class="video-thumbnail" />
+                    </a>
+                    <div class="video-content">
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-description">${video.description}</p>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty.toLowerCase()}">${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        };
+
+        // Render the videos for each learning type
+        renderVideos(visualVideos, 'visualVideosGrid');
+        renderVideos(auditoryVideos, 'auditoryVideosGrid');
+        renderVideos(readVideos, 'readVideosGrid');
+        renderVideos(logicalVideos, 'logicalVideosGrid');
+        renderVideos(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

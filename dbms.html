@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Data Analytics</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+
+
+    <script>
+
+const visualVideos = 
+[
+    {
+        "id": 1,
+        "title": "DBMS Basics - Introduction to Database Management Systems",
+        "description": "Explore foundational DBMS concepts, relational models, data normalization, and basic database operations like CRUD.",
+        "url": "https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y",
+        "thumbnail": "dbms1.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 2,
+        "title": "Master DBMS in 12 Hours - Complete DBMS Course",
+        "description": "A deep dive into DBMS with 12 hours of advanced topics such as indexing, transaction management, and query optimization.",
+        "url": "https://www.youtube.com/playlist?list=PLdo5W4Nhv31b33kF46f9aFjoJPOkdlsRc",
+        "thumbnail": "dbms2.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 3,
+        "title": "DBMS for Beginners - A Practical Introduction",
+        "description": "A practical guide for beginners covering database basics, storage and retrieval, and creating your first relational database.",
+        "url": "https://www.youtube.com/playlist?list=PLrjkTql3jnm-CLxHftqLgkrZbM8fUt0vn",
+        "thumbnail": "dbms3.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 4,
+        "title": "DBMS Fundamentals - Building a Strong Database Foundation",
+        "description": "Learn core database techniques such as data modeling, primary keys, relationships, and SQL queries.",
+        "url": "https://www.youtube.com/playlist?list=PLERZXVMwiajrTsmeVAjFPOIjfUc1_XaQS",
+        "thumbnail": "dbms4.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 5,
+        "title": "Comprehensive DBMS Course - Master DBMS in 12 Hours",
+        "description": "Gain a comprehensive understanding of DBMS, from design principles to advanced topics like indexing and normalization.",
+        "url": "https://www.youtube.com/playlist?list=PLERZXVMwiajrTsmeVAjFPOIjfUc1_XaQS",
+        "thumbnail": "dbms5.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 6,
+        "title": "Introduction to DBMS - Beginner's Guide to Databases",
+        "description": "Start with DBMS basics, including relational databases, data structures, and introductory SQL commands.",
+        "url": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX",
+        "thumbnail": "dbms1.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 7,
+        "title": "DBMS Crash Course - Build Your First Database in 12 Hours",
+        "description": "An intensive course for beginners to build a database from scratch, including data integrity and SQL essentials.",
+        "url": "https://www.youtube.com/playlist?list=PLG9aCp4uE-s0bu-I8fgDXXhVLO4qVROGy",
+        "thumbnail": "dbms2.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 8,
+        "title": "Complete DBMS Training - Learn Database Management in 12 Hours",
+        "description": "Master DBMS fundamentals, from database creation to complex SQL query writing for data handling.",
+        "url": "https://www.youtube.com/playlist?list=PLmXKhU9FNesR1rSES7oLdJaNFgmuj0SYV",
+        "thumbnail": "dbms3.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 9,
+        "title": "DBMS Essentials - Learn Core DBMS Skills in 12 Hours",
+        "description": "This course focuses on key DBMS skills such as schema design, SQL commands, and data normalization techniques.",
+        "url": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRi_CUQ-FXxgzKQ1dwr_ZJWZ",
+        "thumbnail": "dbms4.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 10,
+        "title": "Advanced DBMS Training - Full DBMS Course",
+        "description": "Learn advanced DBMS concepts like transaction management, concurrency control, and performance tuning for databases.",
+        "url": "https://www.youtube.com/playlist?list=PLQ-nEJNYlEV2f7CKt6wjdTdo4zFYo9xya",
+        "thumbnail": "dbms5.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 11,
+        "title": "Introduction to DBMS - Beginner's Guide to Databases",
+        "description": "This beginner course introduces DBMS concepts, relational databases, and SQL foundations.",
+        "url": "https://www.youtube.com/playlist?list=PLXj4XH7LcRfBF0sREiXwZPmbyCnLSM18K",
+        "thumbnail": "dbms1.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 12,
+        "title": "DBMS Crash Course - Build Your First Database in 12 Hours",
+        "description": "Learn to build a database from scratch, covering SQL fundamentals and data integrity principles.",
+        "url": "https://www.youtube.com/playlist?list=PLqcuf9-ILPYAjSxpAssMGrWsTOE5-111e",
+        "thumbnail": "dbms2.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 13,
+        "title": "Complete DBMS Training - Learn Database Management in 12 Hours",
+        "description": "Comprehensive training in DBMS essentials, from database structure to complex data manipulation with SQL.",
+        "url": "https://www.youtube.com/playlist?list=PLC36xJgs4dxGcz7nZaxGxxmbJrcgDXhFk",
+        "thumbnail": "dbms3.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 14,
+        "title": "DBMS Essentials - Learn Core DBMS Skills in 12 Hours",
+        "description": "Core DBMS skills covered include relational design, SQL operations, and normalization principles.",
+        "url": "https://www.youtube.com/playlist?list=PLLOxZwkBK52B6FqMOu6FfU4_5Id2cBStN",
+        "thumbnail": "dbms4.png",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    },
+    {
+        "id": 15,
+        "title": "Advanced DBMS Training - Full DBMS Course",
+        "description": "A thorough course for advancing in DBMS, including transaction management and performance optimization techniques.",
+        "url": "https://www.youtube.com/playlist?list=PL3R9-um41Jsw8hAUYOfNmWNjUr73H6ee0",
+        "thumbnail": "dbms5.jpg",
+        "difficulty": "full course",
+        "topic": "DBMS"
+    }
+]
+
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

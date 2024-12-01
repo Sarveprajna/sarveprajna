@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+        
+    body {
+        background-image: url('background.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(245, 245, 245, 0.8);
+        background-blend-mode: lighten;
+        animation: fadeIn 1.2s forwards;
+        transition: opacity 0.6s;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .box {
+        margin: 20px auto;
+        width: 90%;
+        max-width: 765px;
+        padding: 20px;
+        background-color: red;
+        border-radius: 20px;
+        box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+        color: #010101;
+        line-height: 1.6;
+        text-align: center;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    p1 {
+        font-size: 1.8rem;
+        display: block;
+    }
+
+    .image-container {
+        margin: 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .image-item {
+        text-align: center;
+        width: calc(50% - 20px); /* Default to 2 images per row */
+        margin: 10px;
+        max-width: 150px;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 18%;
+        border: 4px solid #070606;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .caption {
+        font-size: 1rem;
+        margin-top: 8px;
+        color: #010101;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+        .image-item {
+            width: calc(25% - 20px); /* 4 images per row on medium screens */
+        }
+
+        .box p1 {
+            font-size: 2rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .image-item {
+            width: calc(20% - 20px); /* 5 images per row on large screens */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .image-item {
+            width: calc(100% - 20px); /* 1 image per row on small screens */
+        }
+
+        .box p1 {
+            font-size: 1.5rem;
+        }
+
+        .image-container img {
+            height: 120px; /* Adjust height for small screens */
+        }
+    }
+</style>
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>General-Purpose Languages</p1>
+    </div>
+    <div class="image-container">
+        <div class="image-item">
+          
+                <img src="c.jpg" alt="C Language">
+            
+            <div class="caption"><a href="clan.html">C Language</a></div>
+        </div>
+        <div class="image-item">
+         
+                <img src="c++.png" alt="C++">
+           
+            <div class="caption"><a href="c++lan.html">C++</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="c%23.jpg" alt="C#">
+            
+            <div class="caption"><a href="chash.html">C#</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src= "java.png" alt="Java">
+            
+            <div class="caption"><a href="javalan.html">Java</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="python.jpg" alt="Python">
+           
+            <div class="caption"><a href="pylan.html">Python</a></div>
+        </div>
+        <div class="image-item">
+          
+                <img src="ruby.jpg" alt="Ruby">
+         
+            <div class="caption"><a href="rubylan.html">Ruby</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="swift.jpg" alt="Swift">
+           
+            <div class="caption"><a href="swift.html">Swift</a></div>
+        </div>
+        
+        <div class="image-item">
+           
+                <img src="golang.png" alt="Golang">
+            
+            <div class="caption"><a href="golan.html">Golang</a></div>
+        </div>
+       
+        <div class="image-item">
+          
+                <img src="rust.png" alt="Rust">
+            
+            <div class="caption"><a href="rustlan.html">Rust</a></div>
+        </div>
+        
+        <div class="image-item">
+           
+                <img src="kotlin.png" alt="Kotlin">
+            
+            <div class="caption"><a href="kotlan.html">Kotlin</a></div>
+        </div>
+        
+        <div class="image-item">
+          
+                <img src="scala.png" alt="scala">
+            
+            <div class="caption"><a href="scala.html">Scala</a></div>
+        </div>
+       
+        <div class="image-item">
+            
+                <img src= "dart.png" alt="Dart">
+           
+            <div class="caption"><a href="dartlan.html">Dart</a></div>
+        </div>
+        
+        <div class="image-item">
+           
+                <img src="perl.png"  alt="Perl">
+           
+            <div class="caption"><a href="perlan.html">Perl</a></div>
+        </div>
+
+        <div class="image-item">
+           
+                <img src="julia.png"  alt="Julia">
+           
+            <div class="caption"><a href="julan.html">Julia</a></div>
+        </div>     
+    </div>
+    <div class="box">
+        <p1>Web Development Languages</p1>
+    </div>
+    <div class="image-container">
+        <div class="image-item">
+            
+                <img src="js.jpg" alt="JavaScript">
+            
+            <div class="caption"><a href="jslan.html">JavaScript</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="ts.png" alt="TypeScript">
+            
+            <div class="caption"><a href="tslan.html">TypeScript</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="php.png" alt="PHP">
+            
+            <div class="caption"><a href="phplan.html">PHP</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="html.png"  alt="HTML">
+            
+            <div class="caption"><a href="htmllan.html">HTML</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="css.png" alt="CSS">
+            
+            <div class="caption"><a href="csslan.html">CSS</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="sql.png" alt="SQL">
+            
+            <div class="caption"><a href="sqllan.html">SQL</a></div>
+        </div>
+
+       
+    </div>
+    <div class="box">
+        <p1>Functional Programming Languages</p1>
+    </div>
+    <div class="image-container">
+        <div class="image-item">
+           
+                <img src="haskell.png" alt="Haskell">
+           
+            <div class="caption"><a href="hasklan.html">Haskell</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="elixir.jpg" alt="Elixir">
+           
+            <div class="caption"><a href="elixlan.html">Elixir</a></div>
+        </div>
+        <div class="image-item">
+            
+                <img src="erlang.png" alt="Erlang">
+           
+            <div class="caption"><a href="erlan.html">Erlang</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="f%23.jpg"  alt="F#">
+           
+            <div class="caption"><a href="Fhashlan.html">F#</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="lisp.png" alt="Lisp">
+           
+            <div class="caption"><a href="lisplan.html">Lisp</a></div>
+        </div>
+        <div class="image-item">
+           
+                <img src="clojure.png" alt="Clojure">
+            
+            <div class="caption"><a href="closlan.html">Clojure</a></div>
+        </div>
+
+        
+</body>
+</html>

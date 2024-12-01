@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+:root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Block chaining</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+   
+
+    <script>
+
+const visualVideos = [
+    {
+        id: 1,
+        title: "Blockchaining Basics - Introduction to Blockchaining Concepts",
+        description: "Explore the foundational concepts of blockchaining, including decentralized systems, consensus algorithms, and blockchain architecture.",
+        url: "https://www.youtube.com/playlist?list=PLPIwNooIb9vgfXs-QkRYqqZbDXX-yLf59",
+        thumbnail: "bc1.png",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 2,
+        title: "Master Blockchaining in 12 Hours - Complete Blockchaining Course",
+        description: "An intensive 12-hour course covering advanced blockchaining topics such as smart contracts, blockchain security, and decentralized applications (DApps).",
+        url: "https://www.youtube.com/playlist?list=PLYwpaL_SFmcDFRupamGc-9zc-vQqvkQnn",
+        thumbnail: "bc2.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 3,
+        title: "Blockchaining for Beginners - A Practical Introduction",
+        description: "Get started with blockchaining by learning about the tools and techniques used to build, deploy, and interact with blockchain networks.",
+        url: "https://www.youtube.com/playlist?list=PLEiEAq2VkUUKmhU6SO2P73pTdMZnHOsDB",
+        thumbnail: "bc3.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 4,
+        title: "Blockchaining Fundamentals - Building a Strong Blockchaining Foundation",
+        description: "Learn the fundamental techniques for developing and managing blockchain systems, including transaction validation, mining, and consensus protocols.",
+        url: "https://www.youtube.com/playlist?list=PLgPmWS2dQHW-BRQCQCNYgmHUfCN115pn0",
+        thumbnail: "bc4.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 5,
+        title: "Comprehensive Blockchaining Course - Master Blockchaining in 12 Hours",
+        description: "A complete guide to blockchaining, covering everything from blockchain design and development to deploying decentralized applications and understanding blockchain security.",
+        url: "https://www.youtube.com/playlist?list=PLo4m8hx3sbb_p10iRkTFposCc9uGrKN8I",
+        thumbnail: "bc5.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 6,
+        title: "Introduction to Blockchaining - Beginner's Guide to Blockchain Development",
+        description: "Start your journey into blockchaining by learning key concepts like blockchain data structures, hash functions, and the basics of building secure blockchain networks.",
+        url: "https://www.youtube.com/playlist?list=PLsyeobzWxl7oY6tZmnZ5S7yTDxyu4zDW-",
+        thumbnail: "bc1.png",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 7,
+        title: "Blockchaining Crash Course - Build Your First Blockchain Project in 12 Hours",
+        description: "This crash course guides you through building your first blockchain project, including creating blocks, implementing consensus algorithms, and deploying smart contracts.",
+        url: "https://www.youtube.com/watch?v=SyVMma1IkXM&pp=ygUWYmxvY2tjaGFpbmluZyBwbGF5bGlzdA%3D%3D",
+        thumbnail: "bc2.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 8,
+        title: "Complete Blockchaining Training - Learn Blockchaining in 12 Hours",
+        description: "Master the essentials of blockchaining, from transaction mechanisms and smart contracts to blockchain governance and decentralized finance (DeFi).",
+        url: "https://www.youtube.com/playlist?list=PLR0uCBk15bq96j_R_cS1Rwg96rfDAfCmM",
+        thumbnail: "bc3.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 9,
+        title: "Blockchaining Essentials - Learn Core Blockchaining Skills in 12 Hours",
+        description: "This course covers essential skills for building and maintaining blockchain systems, including security best practices, cryptographic methods, and integrating with decentralized apps.",
+        url: "https://www.youtube.com/watch?v=QCvL-DWcojc&pp=ygUWYmxvY2tjaGFpbmluZyBwbGF5bGlzdA%3D%3D",
+        thumbnail: "bc4.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 10,
+        title: "Advanced Blockchaining Training - Full Blockchaining Course",
+        description: "Take your blockchaining skills to the next level by learning advanced topics like blockchain scaling, interoperability, and advanced cryptography.",
+        url: "https://www.youtube.com/playlist?list=PLTwiqKOPckq-jVx4kR-yHJQe19SrmYf_i",
+        thumbnail: "bc5.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 11,
+        title: "Blockchaining Essentials - Learn Core Blockchaining Skills in 12 Hours",
+        description: "This course covers essential skills for building and maintaining blockchain systems, including security best practices, cryptographic methods, and integrating with decentralized apps.",
+        url: "https://www.youtube.com/watch?v=QCvL-DWcojc&pp=ygUWYmxvY2tjaGFpbmluZyBwbGF5bGlzdA%3D%3D",
+        thumbnail: "bc2.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+    {
+        id: 12,
+        title: "Blockchaining Essentials - Learn Core Blockchaining Skills in 12 Hours",
+        description: "This course covers essential skills for building and maintaining blockchain systems, including security best practices, cryptographic methods, and integrating with decentralized apps.",
+        url: "https://www.youtube.com/watch?v=QCvL-DWcojc&pp=ygUWYmxvY2tjaGFpbmluZyBwbGF5bGlzdA%3D%3D",
+        thumbnail: "bc3.jpg",
+        difficulty: "full course",
+        topic: "Blockchaining"
+    },
+];
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>

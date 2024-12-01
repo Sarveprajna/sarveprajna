@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+           :root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 0 0.5rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 30px 10px;
+    }
+    
+    p1 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+
+    .box {
+        width: 90%;
+        padding: 25px 10px;
+    }
+    
+    p1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .box {
+        width: 95%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Visual Learners Section -->
+    <div class="box">
+        <p1>Visual Learners</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    <!-- Auditory Learners Section -->
+    <div class="box">
+        <p1>Auditory Learners</p1>
+    </div>
+    <div class="videos-grid" id="auditoryVideosGrid"></div>
+    
+    <!-- Read/Write Learners Section -->
+    <div class="box">
+        <p1>Read/Write Learners</p1>
+    </div>
+    <div class="videos-grid" id="readVideosGrid"></div>
+    
+    <!-- Logical Learners Section -->
+    <div class="box">
+        <p1>Logical Learners</p1>
+    </div>
+    <div class="videos-grid" id="logicalVideosGrid"></div>   
+    <div class="box">
+        <p1>Solitary Learners</p1>
+    </div>
+    <div class="videos-grid" id="solitaryVideosGrid"></div>      
+
+    <script>
+const visualVideos = [
+    {
+        id: '1',
+        title: 'Rust for Beginners - Learn Rust Programming',
+        description: 'Get started with Rust programming in this comprehensive guide for beginners.',
+        url: 'https://www.youtube.com/playlist?list=PLai5B987bZ9CoVR-QEIN9foz4QCJ0H2Y8',
+        thumbnail: "rtv.png",
+        difficulty: 'full course',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '2',
+        title: 'Rust Full Course - Learn Rust in 12 Hours',
+        description: 'A detailed Rust programming course designed for beginners to master Rust basics.',
+        url: 'https://www.youtube.com/playlist?list=PLinedj3B30sA_M0oxCRgFzPzEMX3CSfT5',
+        thumbnail: "rtv.png",
+        difficulty: 'full course',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '3',
+        title: 'Rust Tutorial - Rust for Beginners',
+        description: 'An introductory course covering essential Rust programming concepts.',
+        url: 'https://www.youtube.com/playlist?list=PLzMcBGfZo4-nyLTlSRBvo0zjSnCnqjHYQ',
+        thumbnail: "rtv.png",
+        difficulty: 'full course',
+        topic: 'Rust Programming'
+    }
+];
+
+const auditoryVideos = [
+    {
+        id: '1',
+        title: 'Audio Lecture: Rust Programming Basics',
+        description: 'An in-depth audio lecture covering Rust programming fundamentals for auditory learners.',
+        url: 'https://www.youtube.com/playlist?list=PLOY5k46NyxirlL6Pk3Py6_5SL1EIdXg5c',
+        thumbnail: "rta.png",
+        difficulty: 'audio guide',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '2',
+        title: 'Podcast: Essential Rust Programming Concepts',
+        description: 'A podcast that discusses key concepts in Rust programming for listening comprehension.',
+        url: 'https://www.youtube.com/playlist?list=PLbBJseQLp5KB4i45TT-w4M3sgqecgDCOq',
+        thumbnail: "rta.png",
+        difficulty: 'podcast',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '3',
+        title: 'Lecture Audio: Advanced Rust Techniques Explained',
+        description: 'An advanced lecture on Rust programming techniques, formatted as an auditory experience.',
+        url: 'https://www.youtube.com/watch?v=zF34dRivLOw&pp=ygUicnVzdCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "rta.png",
+        difficulty: 'lecture',
+        topic: 'Rust Programming'
+    }
+];
+
+const readVideos = [
+    {
+        id: '1',
+        title: 'Step-by-Step Guide to Rust Programming',
+        description: 'A comprehensive Rust programming guide that includes code walkthroughs and written annotations.',
+        url: 'https://www.youtube.com/playlist?list=PLVvjrrRCBy2JSHf9tGxGKJ-bYAN_uDCUL',
+        thumbnail: "rtr.png",
+        difficulty: 'text-based guide',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '2',
+        title: 'In-Depth Rust Programming Concepts',
+        description: 'Focuses on written explanations and coding exercises for each Rust programming concept.',
+        url: 'https://www.youtube.com/playlist?list=PLndmg9UIKNomnnSxd__VKkUX4zT1YpSoY',
+        thumbnail: "rtr.png",
+        difficulty: 'text & code examples',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '3',
+        title: 'Comprehensive Rust Tutorial for Beginners',
+        description: 'A detailed Rust tutorial with written explanations of key concepts and coding techniques.',
+        url: 'https://www.youtube.com/playlist?list=PLDbRgZ0OOEpUkWDGqp91ODn0dk7LPBAUL',
+        thumbnail: "rtr.png",
+        difficulty: 'text-based tutorial',
+        topic: 'Rust Programming'
+    }
+];
+
+const logicalVideos = [
+    {
+        id: '1',
+        title: 'Mastering Rust Programming Logic',
+        description: 'A logical breakdown of Rust programming concepts and how they work together.',
+        url: 'https://www.youtube.com/playlist?list=PLPoSdR46FgI412aItyJhj2bF66cudB6Qs',
+        thumbnail: "rtl.jpg",
+        difficulty: 'conceptual guide',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '2',
+        title: 'Rust Programming Logic Explained',
+        description: 'Understand the logical structure and flow of Rust programming with real-life examples.',
+        url: 'https://www.youtube.com/watch?v=BpPEoZW5IiY&pp=ygUicnVzdCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "rtl.jpg",
+        difficulty: 'logically structured',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '3',
+        title: 'Decoding Rust Programming Logic',
+        description: 'An in-depth explanation of Rust programming through logical examples and exercises.',
+        url: 'https://www.youtube.com/watch?v=xzSMXHdYOns&list=PL8fnAiiuQeFsss4xdjXyHJ4fT4_w10s3J',
+        thumbnail: "rtl.jpg",
+        difficulty: 'concept-focused',
+        topic: 'Rust Programming'
+    }
+];
+
+const solitaryVideos = [
+    {
+        id: '1',
+        title: 'Rust Programming: Learn at Your Own Pace',
+        description: 'A solitary video for self-paced learning of Rust programming basics and advanced techniques.',
+        url: 'https://www.youtube.com/watch?v=zCtROMfofw4&list=PLRuqvIc0eAmp8Lv6M4BKQWEinvCuqdVFP',
+        thumbnail: "rts.jpg",
+        difficulty: 'self-paced guide',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '2',
+        title: 'Learn Rust Alone: No Distractions',
+        description: 'A solitary study session to focus on learning Rust independently without external interruptions.',
+        url: 'https://www.youtube.com/watch?v=qP7LzZqGh30&pp=ygUicnVzdCBwcm9ncmFtbWluZyBsYW5ndWFnZSBwbGF5bGlzdA%3D%3D',
+        thumbnail: "rts.jpg",
+        difficulty: 'no distractions',
+        topic: 'Rust Programming'
+    },
+    {
+        id: '3',
+        title: 'Complete Rust Programming Course',
+        description: 'A fully solitary Rust programming course for deep and focused learning.',
+        url: 'https://www.youtube.com/watch?v=-lYeJeQ11OI&list=PLfllocyHVgsRwLkTAhG0E-2QxCf-ozBkk',
+        thumbnail: "rts.jpg",
+        difficulty: 'full course',
+        topic: 'Rust Programming'
+    }
+];
+
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+        generateVideoCards(auditoryVideos, 'auditoryVideosGrid');
+        generateVideoCards(readVideos, 'readVideosGrid');
+        generateVideoCards(logicalVideos, 'logicalVideosGrid');
+        generateVideoCards(solitaryVideos, 'solitaryVideosGrid');
+    </script>
+</body>
+</html>

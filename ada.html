@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarveprajna</title>
+    <style>
+:root {
+    --primary-color: #4f46e5;
+    --primary-light: #eef2ff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-600: #4b5563;
+    --gray-900: #111827;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-image: url('background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+    animation: fadeIn 1.2s forwards;
+    transition: opacity 0.6s;
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.video-card {
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.video-content {
+    padding: 1rem;
+}
+
+.video-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-description {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.difficulty {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.difficulty.beginner { background: #dcfce7; color: #166534; }
+.difficulty.intermediate { background: #fef9c3; color: #854d0e; }
+.difficulty.advanced { background: #fee2e2; color: #991b1b; }
+
+.topic {
+    background: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 669px;
+    padding: 35px 15px;
+    background-color: red;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 0.6;
+    text-align: center;
+    animation: float 8s ease-in-out infinite;
+}
+
+p1 {
+    font-size: 30px;
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        margin: 1.5rem auto;
+    }
+
+    .box {
+        width: 80%;
+        padding: 30px 15px;
+    }
+
+    p1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        padding: 0 1rem;
+    }
+
+    .video-thumbnail {
+        height: 120px;
+    }
+
+    .box {
+        width: 90%;
+        padding: 20px 10px;
+    }
+
+    p1 {
+        font-size: 20px;
+    }
+
+    .difficulty, .topic {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .videos-grid {
+        grid-template-columns: 1fr;
+        padding: 0 0.5rem;
+    }
+
+    .video-thumbnail {
+        height: 100px;
+    }
+
+    .box {
+        width: 95%;
+        padding: 15px 8px;
+    }
+
+    p1 {
+        font-size: 18px;
+    }
+
+    .difficulty, .topic {
+        font-size: 0.6rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p1>Analysis and Design of Algorithms</p1>
+    </div>
+    <div class="videos-grid" id="visualVideosGrid"></div>
+
+    
+
+    <script>
+
+const visualVideos  = [
+
+    {
+        id: 1,
+        title: "Introduction to Analysis and Design of Algorithms",
+        description: "Explore the foundational concepts of algorithm analysis, design strategies, and their role in creating efficient algorithms.",
+        url: "https://www.youtube.com/playlist?list=PLXzXYTtLoFyzcbx91YWHIFwverv3R2uVy",
+        thumbnail: "ada1.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 2,
+        title: "Master Analysis and Design of Algorithms in 12 Hours",
+        description: "An intensive 12-hour course covering advanced topics in algorithm design, such as divide and conquer, greedy algorithms, dynamic programming, and more.",
+        url: "https://www.youtube.com/playlist?list=PLxCzCOWd7aiHcmS4i14bI0VrMbZTUvlTa",
+        thumbnail: "ada2.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 3,
+        title: "Analysis and Design of Algorithms for Beginners",
+        description: "A beginner's guide to understanding algorithms, starting with simple sorting and searching algorithms, and progressing to more advanced techniques.",
+        url: "https://www.youtube.com/playlist?list=PLz8TdOA7NTzQkI_TCASvO8Abbo9XgUuiu",
+        thumbnail: "ada3.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 4,
+        title: "Fundamentals of Algorithm Design",
+        description: "Learn the basic principles of designing algorithms, including understanding time and space complexity, and various approaches for algorithm development.",
+        url: "https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O",
+        thumbnail: "ada4.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 5,
+        title: "Comprehensive Course on Algorithm Design and Analysis",
+        description: "A deep dive into the core concepts of algorithm design, from basic techniques to advanced algorithmic strategies for optimization and efficiency.",
+        url: "https://www.youtube.com/playlist?list=PL1QH9gyQXfgs7foRxIbIH8wmJyDh5QzAm",
+        thumbnail: "ada5.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 6,
+        title: "Introduction to Algorithmic Thinking",
+        description: "Start learning the foundational techniques for algorithmic problem-solving, including brute force methods, greedy approaches, and dynamic programming.",
+        url: "https://www.youtube.com/watch?v=z6DY_YSdyww&pp=ygUMYWRhIHBsYXlsaXN0",
+        thumbnail: "ada1.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 7,
+        title: "Algorithm Design Crash Course",
+        description: "This crash course covers key topics in algorithm design, helping you understand when to use specific algorithmic approaches like recursion, backtracking, and greedy algorithms.",
+        url: "https://www.youtube.com/playlist?list=PLEjRWorvdxL6y8SHeop_VGH24WvT_uNfm",
+        thumbnail: "ada2.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 8,
+        title: "Complete Guide to Algorithm Design and Analysis",
+        description: "Master the key techniques and strategies for designing algorithms, including optimization, problem-solving strategies, and handling complex computational problems.",
+        url: "https://www.youtube.com/playlist?list=PLmXKhU9FNesQJ3rpOAFE6RTm-2u2diwKn",
+        thumbnail: "ada3.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 9,
+        title: "Advanced Algorithm Design Techniques",
+        description: "Delve into more advanced algorithm design techniques like divide and conquer, dynamic programming, graph algorithms, and NP-completeness.",
+        url: "https://www.youtube.com/watch?v=twE1eiO7gEE&list=PL-JvKqQx2Atd--1Gs3WB8nmWOWRbEM7WW",
+        thumbnail: "ada4.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    },
+    {
+        id: 10,
+        title: "Advanced Analysis of Algorithms",
+        description: "Learn how to analyze the efficiency of algorithms in terms of time and space complexity. Explore different algorithmic paradigms and their applications in real-world problems.",
+        url: "https://www.youtube.com/playlist?list=PLmAmHQ-_5ySx5Pov1ZJmHebsVuiBvUflf",
+        thumbnail: "ada5.jpg",
+        difficulty: "full course",
+        topic: "Analysis and Design of Algorithms"
+    }
+];
+ 
+
+
+
+        function generateVideoCards(videos, gridId) {
+            const grid = document.getElementById(gridId);
+            grid.innerHTML = '';  // Clear grid before adding new content
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.classList.add('video-card');
+                
+                card.innerHTML = `
+                    <a href="${video.url}" target="_blank">
+                        <img src="${video.thumbnail}" alt="Thumbnail for ${video.title}" class="video-thumbnail">
+                    </a>
+                    <div class="video-content">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-description">${video.description}</div>
+                        <div class="video-meta">
+                            <span class="difficulty ${video.difficulty === 'beginner' ? 'beginner' : 
+                              video.difficulty === 'intermediate' ? 'intermediate' : 'advanced'}">
+                              ${video.difficulty}</span>
+                            <span class="topic">${video.topic}</span>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Generate video cards for each learning style
+        generateVideoCards(visualVideos, 'visualVideosGrid');
+
+    </script>
+</body>
+</html>
