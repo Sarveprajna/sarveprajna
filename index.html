@@ -1,126 +1,141 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" type="x-icon" href="F:/background.webp" >
+    <meta http-equiv="X-UA-Compatible" contents="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Armed Forces</title>
-    <style>
-        body {
-            width: 100%;
-            /* background: linear-gradient(rgba(196, 189, 189, 0.5), rgba(248, 244, 244, 0.5)), url(https://t4.ftcdn.net/jpg/06/70/05/71/360_F_670057157_ru2QhukixXgzrCYYbvUXTE9aFdxdI5Lw.jpg); */
-            background-position: center;
-            background-color: rgba(154, 148, 138, 0.429);
-            background-size: cover;
-            height: 100vh;
-        }
-        /* body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        } */
-        .container1, .container2, .container3 , .container4, .container5{
-            width: 80%;
-            max-width: 600px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin: 20px auto; /* Added margin to center vertically */
-        }
-        .header1, .header2,.header3 ,.header4,.header5{
-            background-color: #f98f0d;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1.5em;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 20px;
-        }
-        .cell {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .cell:hover {
-            background-color: #e9e9e9;
-        }
-    </style>
+    <title>Sarveprajna</title>
+    
 </head>
+<style>
+    body {
+    background-image: url('F:/background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(245, 245, 245, 0.8);
+    background-blend-mode: lighten;
+}
+
+.logo-container {
+    position: absolute;
+    top: -4px;
+    left: -5px;
+}
+
+.logo {
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-right: 15px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.website-name h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 4.5rem;
+    color: #0077b6;
+    margin: 0;
+    padding-left: 100px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.info-box {
+    margin-top: 170px;
+    margin-left: 175px;
+    width: 919px;
+    padding: 35px 15px;
+    background-color: rgba(139, 190, 211, 0.95);
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    line-height: 1.6;
+    height: 220px;
+}
+
+p {
+    color: #000000;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.box {
+    margin-top: 46px;
+    margin-left: 55px;
+    width: 1128px;
+    padding: 35px 15px;
+    background-color: #0077b6;
+    border-radius: 20px;
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.15);
+    font-family: 'Arial', sans-serif;
+    color: #010101;
+    line-height: 1.6;
+    height: 45px;
+}
+
+p1 {
+    color: #000000;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.arrow {
+    color: #090a0b;
+    font-size: 1.0rem;
+    animation: moveArrow 1.0s infinite;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+@keyframes moveArrow {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+</style>
 <body>
-    <h1 style="font-size: 50px; margin-left: 370px;">Indian Armed Forces</h1>
-    <div class="container1">
-        <div class="header1"><b>Indian Armed Forces</b></div>
-        <div class="grid">
-            <div class="cell"><strong >Branches</strong></div>
-            <div class="cell">Indian Army,<br>Indian Navy,<br>Indian Armed Forces</div>
-            <div class="cell"><strong>Headquarters</strong></div>
-            <div class="cell">Ministry of Defence,<br>South Block,<br>New Delhi</div>
+    <div class="header">
+        <div class="logo-container">
+            <img src="F:/logo.webp" alt="Logo" class="logo">
+        </div>
+        <div class="website-name">
+            <h1>Sarveprajna</h1>
         </div>
     </div>
-    <div class="container2">
-        <div class="header2"><b>Leadership</b></div>
-        <div class="grid">
-            <div class="cell"><strong> Supreme Commander</strong></div>
-            <div class="cell">President Droupadi Murmu</div>
-            <div class="cell"><strong>Prime Minister</strong></div>
-            <div class="cell">Narendra Modi</div>
-            <div class="cell"><strong>Minister of Defence</strong></div>
-            <div class="cell">Rajnath Singh</div>
-            <div class="cell"><strong>Secretary</strong></div>
-            <div class="cell">Giridhar Aramane, IAS</div>
-            <div class="cell"><strong>Chief of Defence Staff</strong></div>
-            <div class="cell">Chief of Defence Staff</div>
-        </div>
+    <div class="info-box">
+        <p>Welcome to Sarveprajna, where we provide curated educational videos for various subjects tailored to different learning styles. This website is to recommend personalized YouTube videos for a variety of subjects, catering to different learning styles. Whether you're a visual, auditory, or hands-on learner, the platform curates content to match your preferences and pace. By organizing videos based on complexity and delivery style, it ensures an effective and engaging learning experience for everyone, helping users grasp concepts more easily and enjoyably.</p>
     </div>
-    <div class="container3">
-        <div class="header3"><b>Personnel</b></div>
-        <div class="grid">
-            <div class="cell"><strong>Military age</strong></div>
-            <div class="cell">18</div>
-            <div class="cell"><strong>Conscription</strong></div>
-            <div class="cell">No</div>
-            <div class="cell"><strong>Reaching military<br>
-                age annually</strong></div>
-            <div class="cell">23,116,044[</div>
-            <div class="cell"><strong>Active personnel</strong></div>
-            <div class="cell">1,455,550[3] (ranked 2nd)</div>
-            <div class="cell"><strong>Reserve personnel</strong></div>
-            <div class="cell">1,155,000[3]</div>
-        </div>
+    <div class="box">
+        <p1>At Sarveprajna, we recommend personalized YouTube videos across various subjects and courses, tailored to different learning styles. To learn more about the subjects and courses we offer <span class="arrow">➔</span><a href="course.html" class="link"> click here</a> </p1>
     </div>
-    <div class="container4">
-        <div class="header4"><b>Expenditure</b></div>
-        <div class="grid">
-            <div class="cell"><strong>Budget</strong></div>
-            <div class="cell">₹5.94 trillion (US$71 billion) (2023–24)[4]</div>
-            <div class="cell"><strong>Percent of GDP</strong></div>
-            <div class="cell">2% (2022–23)[4]</div>
-        </div>
-    </div>   
-    <div class="container5">
-        <div class="header5"><b>Industry</b></div>
-        <div class="grid">
-            <div class="cell"><strong>Foreign suppliers</strong></div>
-            <div class="cell"> Russia[6]<br>
-                France[6]<br>
-                Israel[6]<br>
-                United States[7]<br>
-                Soviet Union[8][9] </div>
-            <div class="cell"><strong>Annual imports</strong></div>
-            <div class="cell">US$41.208 billion (2010–2021)[10]</div>
-            <div class="cell"><strong>Annual exports</strong></div>
-            <div class="cell">US$448 million (2010–2021)[10]</div>
-        </div>
-    </div> 
 </body>
 </html>
