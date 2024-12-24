@@ -181,6 +181,171 @@ p1 {
         font-size: 18px;
     }
 }
+/* Chatbot Styles */
+.chat-toggle-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #003366;
+            /* Deep blue */
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .chat-toggle-button:hover {
+            background-color: #1e4f91;
+            /* Lighter blue */
+            transform: scale(1.1);
+        }
+
+        .chat-toggle-button:active {
+            background-color: #00214d;
+            /* Darker blue */
+            transform: scale(0.95);
+        }
+
+        .chat {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            overflow: hidden;
+            height: 422px;
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: #003366;
+            /* Deep blue */
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .chat-body {
+            flex-grow: 1;
+            padding: 10px 15px;
+            overflow-y: auto;
+            background-color: #d9e7f7;
+            /* Light blue */
+        }
+
+        .chat-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-body::-webkit-scrollbar-thumb {
+            background-color: #003366;
+            border-radius: 3px;
+        }
+
+        .chat-body::-webkit-scrollbar-track {
+            background-color: #d9e7f7;
+        }
+
+        .chat-message {
+            margin: 10px 0;
+            padding: 10px 12px;
+            border-radius: 18px;
+            width: fit-content;
+            max-width: 75%;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .chat-message.user {
+            background-color: #007bff;
+            /* Bright blue */
+            color: white;
+            align-self: flex-end;
+            border-radius: 18px 18px 0 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-left: auto;
+            /* Ensures the message is pushed to the right */
+            text-align: right;
+            /* Align text inside the bubble to the right */
+        }
+
+
+        .chat-message.bot {
+            background-color: #ffffff;
+            color: black;
+            align-self: flex-start;
+            border-radius: 18px 18px 18px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-footer {
+            padding: 10px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-footer input {
+            flex-grow: 1;
+            padding: 8px 12px;
+            margin-right: 5px;
+            border-radius: 23px;
+            border: 1px solid #ddd;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-footer input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .chat-footer button {
+            padding: 8px 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .chat-footer button:hover {
+            background-color: #1e4f91;
+        }
+
+        .chat-footer button:active {
+            background-color: #00214d;
+        }
+
+        /* Media Query for Smaller Screens */
+        @media (max-width: 600px) {
+            .chat {
+                width: 95%;
+                right: 2.5%;
+                bottom: 80px;
+                max-height: 60vh;
+            }
+
+            .chat-header {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -188,7 +353,16 @@ p1 {
         <p1>Data Analytics</p1>
     </div>
     <div class="videos-grid" id="visualVideosGrid"></div>
-
+<!-- Chatbot -->
+<div class="chat-toggle-button" id="chat-toggle">💬</div>
+<div class="chat" id="chat-container">
+    <div class="chat-header">Chatbot</div>
+    <div class="chat-body" id="chat-body"></div>
+    <div class="chat-footer">
+        <input type="text" id="message-input" placeholder="Type a message...">
+        <button id="send-button">➤</button>
+    </div>
+</div>
  
     <script>
 
@@ -320,6 +494,86 @@ const visualVideos = [
         // Generate video cards for each learning style
         generateVideoCards(visualVideos, 'visualVideosGrid');
 
+    </script>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai"
+        const toggleButton = document.getElementById('chat-toggle');
+        const chatContainer = document.getElementById('chat-container');
+        const chatBody = document.getElementById('chat-body');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+
+
+        toggleButton.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        const generateResponse = async (userMessage, messageElement) => {
+            try {
+                const answer = await runModel(userMessage, messageElement);
+
+                messageElement.innerHTML = answer;
+            } catch (error) {
+                console.error("Failed to generate response:", error);
+                messageElement.textContent = "Sorry, Something went wrong"
+            }
+        }
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission behavior
+                sendButton.click(); // Trigger the send button click event
+            }
+        });
+
+
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = messageInput.value.trim();
+            if (userMessage) {
+                const userBubble = document.createElement('div');
+                userBubble.classList.add('chat-message', 'user');
+                userBubble.textContent = userMessage;
+                //console.log(userMessage)
+                chatBody.appendChild(userBubble);
+                messageInput.value = '';
+
+                setTimeout(() => {
+                    const botBubble = document.createElement('div');
+                    botBubble.classList.add('chat-message', 'bot');
+                    generateResponse(userMessage, botBubble);
+                    chatBody.appendChild(botBubble);
+                }, 1000);
+            }
+        });
+        const genAI = new GoogleGenerativeAI("AIzaSyAeahj9xuIR-3bfn10T8akZp513otFjgC4");
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        async function runModel(prompt, messageElement) {
+            const result = await model.generateContent(prompt);
+            //console.log(result)
+            let fullResponse = result.response.text()
+            fullResponse = fullResponse.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            fullResponse = fullResponse.replace(/\n/g, '<br>');
+            let halftext = ''
+            for (let i = 0; i < fullResponse.length; i++) {
+                halftext += fullResponse[i]  // Append letter by letter to the full response
+
+                messageElement.innerHTML = halftext;
+
+                // Add a small delay between each letter (e.g., 5ms)
+                await new Promise(resolve => setTimeout(resolve, 5));
+            }
+            //console.log(fullResponse)
+            return fullResponse
+        }
     </script>
 </body>
 </html>
